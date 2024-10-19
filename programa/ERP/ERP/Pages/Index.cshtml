@@ -1,0 +1,87 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    Layout = "_LayoutSinEstilo";
+}
+
+<style>
+
+    form {
+        margin: 0 auto;
+        width: 400px;
+        background-color: #13232f;
+        box-shadow: 0 4px 10px 4px rgba(#13232f,.3);
+        padding: 40px;
+        max-width: 600px;
+        margin: 40px auto;
+        border-radius: 4px;
+    }
+    body{
+        margin-bottom: 60px;
+        background-color: #c1bdba;
+    }
+
+    h1 {
+        color: #ffffff;
+        text-align: center;
+        margin: 0 0 40px;
+    }
+
+    label {
+        color: #ffffff;
+    }
+
+    input {
+        color: #ffffff;
+        font-size: 22px;
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 5px 10px;
+        background: none;
+        background-image: none;
+        border: 1px solid #13232f border-radius: 0;
+        transition: border-color .25s ease, box-shadow .25s
+    }
+
+    .Boton {
+        display: block;
+        width: 100%;
+        border: 0;
+        outline: none;
+        border-radius: 0;
+        padding: 15px 0;
+        font-size: 2rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: .1em;
+        background: #1ab188;
+        color: #ffffff;
+        transition: all.5s ease;
+        -webkit-appearance: none;
+    }
+
+    .text_danger {
+        color: #ffffff
+    }
+
+</style>
+
+  <div class="container">
+    <form method="POST" >
+        <h1>Iniciar Sesión</h1>
+        <input type="text" id="Nombre" asp-for="Usuario" , value="@Model.Usuario" placeholder="Usuario">
+        <!-- Con la línea de abajo se añade la validación que se le asigna al atributo en la clase. Esto se hace para cada campo que se debe rellenar-->
+        <span asp-validation-for="Usuario" class="text_danger"></span>
+            <br> <br />
+
+        <input type="password" id="contrasenia" asp-for="Contrasenia" , value="@Model.Contrasenia" placeholder="Contraseña">
+        <span asp-validation-for="Contrasenia" class="text_danger"></span>
+        <br> <br />
+        <input class="Boton" type="submit" name="Ingresar" value="Ingresar" />
+        <br> <br />
+    </form>
+</div>
+
+

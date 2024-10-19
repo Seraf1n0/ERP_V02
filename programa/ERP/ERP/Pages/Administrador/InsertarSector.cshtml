@@ -1,0 +1,121 @@
+﻿@page
+@model ERP.Pages.Administrador.InsertarSectorModel
+@{
+    Layout = "_LayoutAdministrador";
+}
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 70vh;
+        margin-top: 80px;
+    }
+
+    form {
+        background: rgba(19, 35, 47,.9);
+        padding: 40px;
+        border-radius: 4px;
+        margin: 40px auto;
+        box-shadow: 0 4px 10px 4px rgba(19, 35, 47,.3);
+        max-width: 980px;
+        width: 90%;
+    }
+
+    h1 {
+        color: #ffffff;
+        text-align: center;
+        margin: 0 0 40px;
+    }
+
+    .input-container {
+        display: flex;
+        justify-content: space-between; /* Espacio entre los inputs */
+    }
+
+        .input-container div {
+            display: flex;
+            flex-direction: column; /* Asegura que los inputs y mensajes de error estén alineados verticalmente */
+            width: 100%; /* Asegura que los divs dentro del contenedor tomen el espacio disponible */
+        }
+
+    input {
+        color: #ffffff;
+        /*font-size: 18px;*/
+        padding: 5px 10px;
+        margin-right: 15px;
+        /*margin-left: 15px;*/
+        margin-bottom: 10px;
+        background: none;
+        background-image: none;
+        border: 1px solid #a0b3b0;
+        border-radius: 0;
+        transition: border-color .25s ease, box-shadow .25s;
+    }
+
+    label {
+        color: #ffffff;
+        /*margin-right: 15px;*/
+        /*margin-left: 15px;*/
+        margin-bottom: 20px;
+        font-size: 20px;
+    }
+
+    select {
+        color: #ffffff; /* Texto en blanco para combinar */
+        padding: 5px 10px; /* Igual que el input */
+        margin-right: 15px;
+        margin-left: 15px;
+        margin-bottom: 10px;
+        background: none;
+        border: 1px solid #a0b3b0;
+        border-radius: 0;
+        transition: border-color .25s ease, box-shadow .25s;
+        appearance: none; /* Elimina el estilo predeterminado del navegador */
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-color: transparent;
+    }
+
+    option {
+        color: #000000; /* Texto negro dentro de las opciones desplegadas */
+        background-color: #ffffff; /* Fondo blanco para mejor contraste */
+    }
+
+    .Boton {
+        display: block;
+        border: 0;
+        outline: none;
+        border-radius: 0;
+        padding: 15px;
+        font-size: 2rem;
+        font-weight: 600;
+        letter-spacing: .1em;
+        background: #1ab188;
+        color: #ffffff;
+        transition: all.5s ease;
+        -webkit-appearance: none;
+        /* Establece un ancho fijo según tus necesidades */
+        margin: 0 auto; /* Centra el botón */
+    }
+
+    .text_danger {
+        color: red;
+        font-size: 12px; /* Ajusta el tamaño del texto del error */
+    }
+</style>
+
+<div class="container">
+    <form method="POST">
+        <h1>Agregar Sector</h1>
+        <div class="input-container">
+            <div>
+                <label>Sector</label>
+                <input type="text" id="zona" asp-for="sector" value="@Model.sector" placeholder="Sector">
+                <span asp-validation-for="sector" class="text_danger"></span>
+            </div>
+        </div>
+        <br> <br />
+        <input class="Boton" type="submit" name="Registar" value="Registrar Sector" />
+    </form>
+</div>

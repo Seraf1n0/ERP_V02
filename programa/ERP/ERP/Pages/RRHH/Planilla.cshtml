@@ -1,0 +1,331 @@
+﻿@page
+@model ERP.Pages.RRHH.PlanillaModel
+@{
+    Layout = "_LayoutRRHH";
+}
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin-top: 80px;
+    }
+
+    .contenedorPrincipal {
+        background: rgba(19, 35, 47,.9);
+        padding: 40px;
+        border-radius: 4px;
+        margin: 40px auto;
+        box-shadow: 0 4px 10px 4px rgba(19, 35, 47,.3);
+        max-width: 980px;
+        width: 100%;
+    }
+
+    /* Para mostrar la parte de pagos por defecto */
+    .seccionPagar {
+        display: block;
+    }
+
+    .seccionReportes {
+        display: none;
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: #ccc;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        /* Estilo del botón activo */
+        button.active {
+            background-color: #1ab188;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #999;
+        }
+
+    .contenedorBotones {
+        display: flex;
+        justify-content: center;
+        gap: 20px; /* Separación entre los botones */
+    }
+
+    h1 {
+        color: #ffffff;
+        text-align: center;
+        margin: 20px;
+    }
+
+    h2 {
+        color: #ffffff;
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+    .contenedorTabla {
+        display: flex;
+        flex-direction: column;
+       
+        width: 100%;
+        background-color: #ffffff;
+        border-radius: 5px;
+    }
+
+        .contenedorTabla .table_header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 30px 0;
+    }
+
+    select {
+        border: none;
+        border-bottom: 1px solid #c9c9c9;
+        width: 200px;
+        padding: 10px 0;
+        font-size: 16px;
+    }
+
+    .input_search {
+        position: relative;
+        input{
+        border-radius: 30px;
+        width: 400px;
+        outline: none;
+        padding: 10px 20px;
+        border: 1px solid #c9c9c9;
+        box-sizing: border-box;
+        padding-right: 50px;
+
+            #search{
+            position: absolute;
+            top: 50%;
+            right: 0;
+            margin-right: 1rem;
+            transform: translate(-50%, -50%);
+            }
+
+        }
+    }
+
+    table {
+        border-spacing: 0;
+        margin-top: 1rem;
+            thead{
+            background-color: #13232f;
+            color: white;
+                th{
+                padding: 10px;
+                }
+
+            }
+
+        tbody{
+            tr{
+                td{
+                    padding: 10px text-align: center;
+                    border-bottom: 1px solid #dfdfdf;
+                }
+
+            }
+        }
+    }
+
+    .tituloTabla {
+        color: black;
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+    input {
+        color: #ffffff;
+        /*font-size: 18px;*/
+        padding: 5px 10px;
+        margin-right: 15px;
+        /*margin-left: 15px;*/
+        margin-bottom: 10px;
+        background: none;
+        background-image: none;
+        border: 1px solid #a0b3b0;
+        border-radius: 0;
+        transition: border-color .25s ease, box-shadow .25s;
+    }
+
+    .text_danger {
+        color: red;
+        font-size: 12px; /* Ajusta el tamaño del texto del error */
+    }
+
+    .horas {
+        display: flex;
+        justify-content: space-between; /* Espacio entre los inputs */
+    }
+
+        .horas div {
+            display: flex;
+            flex-direction: column; /* Asegura que los inputs y mensajes de error estén alineados verticalmente */
+            width: 50%; /* Asegura que los divs dentro del contenedor tomen el espacio disponible */
+        }
+
+    .Boton {
+        display: block;
+        border: 0;
+        outline: none;
+        border-radius: 0;
+        padding: 15px;
+        font-size: 2rem;
+        font-weight: 600;
+        letter-spacing: .1em;
+        background: #1ab188;
+        color: #ffffff;
+        transition: all.5s ease;
+        -webkit-appearance: none;
+        /* Establece un ancho fijo según tus necesidades */
+        margin: 0 auto; /* Centra el botón */
+    }
+
+    .table_fotter{
+        color: white;
+    }
+</style>
+
+<div class="contenedorPrincipal" id="contenedorPrincipal">
+    <h1>Planilla</h1>
+    <div class="contenedorBotones">
+        <button id="botonPagar" class="active" onclick="mostrarSeccion('seccionPagar', this)">Pagar</button>
+        <button id="botonReportes" onclick="mostrarSeccion('seccionReportes', this)">Reportes</button>
+    </div>
+    <br> <br />
+    <div class="seccionPagar" id="seccionPagar">
+            <div class="contenedorTabla">
+                <div class="table_header">
+                    <h2 class="tituloTabla">Empleados</h2>
+                    <select name="" id="">
+                        <option value="" selected>Tipo</option>
+                        <option value="">Tipo1</option>
+                        <option value="">Tipo2</option>
+                    </select>
+                    <div class="input_search">
+                        <input type="search" placeholder="Buscar" />
+                        <i class='bx bx-search-alt-2'></i>
+                    </div>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cédula</th>
+                            <th>Nombre</th>
+                            <th>Primer Apellido</th>
+                            <th>Segundo Apellido</th>
+                            <th>Departamento</th>
+                            <th>Puesto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var empleado in Model.empleados)
+                        {
+                            <tr>
+                                <td>@empleado.cedula</td>
+                                <td>@empleado.nombre</td>
+                                <td>@empleado.apellido1</td>
+                                <td>@empleado.apellido2</td>
+                                <td>@empleado.departamento</td>
+                                <td>@empleado.puesto</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="table_fotter">
+                <p>Total de empleados : @Model.empleados.Count()</p>
+            </div>
+
+        <form method="POST">
+            <!--Aquí voy a ingresar las horas laboradas por el empleado-->
+            <h1>Horas Laboradas</h1>
+            <div class="horas">
+                <div>
+                    <input type="text" id="horasRegulares" asp-for="horasRegulares" value="@Model.horasRegulares" placeholder="Jornada Regular">
+                    <span asp-validation-for="horasRegulares" class="text_danger"></span>
+                </div>
+                <div>
+                    <input type="text" id="horasExtras" asp-for="horasExtras" value="@Model.horasExtras" placeholder="Horas Extras">
+                    <span asp-validation-for="horasExtras" class="text_danger"></span>
+                </div>
+            </div>
+            <br> <br />
+            <input class="Boton" type="submit" name="pagar" value="Pagar" />
+        </form>
+    </div>
+
+    <div class="seccionReportes" id="seccionReportes">
+        <div class="contenedorTabla">
+            <div class="table_header">
+                <h2 class="tituloTabla">Empleados</h2>
+                <select name="" id="">
+                    <option value="" selected>Tipo</option>
+                    <option value="">Tipo1</option>
+                    <option value="">Tipo2</option>
+                </select>
+                <div class="input_search">
+                    <input type="search" placeholder="Buscar" />
+                    <i class='bx bx-search-alt-2'></i>
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cédula</th>
+                        <th>Nombre</th>
+                        <th>Primer Apellido</th>
+                        <th>Segundo Apellido</th>
+                        <th>Departamento</th>
+                        <th>Puesto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var empleado in Model.empleados)
+                    {
+                        <tr>
+                            <td>@empleado.cedula</td>
+                            <td>@empleado.nombre</td>
+                            <td>@empleado.apellido1</td>
+                            <td>@empleado.apellido2</td>
+                            <td>@empleado.departamento</td>
+                            <td>@empleado.puesto</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="table_fotter">
+            <p>Total de empleados : @Model.empleados.Count()</p>
+        </div>
+    </div>
+    <br />
+</div>
+
+<script>
+    function mostrarSeccion(seccion, boton) {
+    // Ocultar todas las secciones
+        document.querySelectorAll('.seccionPagar, .seccionReportes').forEach(function (section) {
+    section.style.display = 'none';
+    });
+
+    // Mostrar la sección correspondiente
+    document.getElementById(seccion).style.display = 'block';
+
+    // Quitar la clase 'active' de todos los botones
+    document.querySelectorAll('#contenedorPrincipal button').forEach(function (boton) {
+    boton.classList.remove('active');
+    });
+
+    // Añadir la clase 'active' al botón presionado
+    boton.classList.add('active');
+    }
+</script>

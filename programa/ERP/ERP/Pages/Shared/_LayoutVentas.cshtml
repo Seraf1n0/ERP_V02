@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <!-- Aquí puedes incluir estilos específicos para esta página si es necesario -->
+    <link rel="stylesheet" href="~/css/estilo_LayoutVentas.css" asp-append-version="true" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    @RenderBody() 
+    <nav>
+        <div class="logo">
+            <i class='bx bx-menu menu-icon'></i>
+            <span class=" "logo-name">Ventas</span>
+        </div>
+
+        
+        <div class="sidebar">
+
+            <div class="logo">
+                <i class='bx bx-menu menu-icon'></i>
+                <span class=" " logo-name">Ventas</span>
+            </div>
+
+            <div class="sidebar-content">
+                <ul class="lists">
+
+                    <li class="list">
+                        <a href="\Ventas/Factura" class="nav-link">
+                            <i class='bx bx-receipt icon'></i>   
+                            <span class="link">Facturas</span>
+
+                        </a>
+                    </li>
+
+                    <li class="list">
+                        <a href="\Ventas/Cotizacion" class="nav-link">
+                            <i class='bx bx-spreadsheet icon'></i>   
+                            <span class="link">Cotizaciones</span>
+
+                        </a>
+                    </li>
+
+                    <li class="list">
+                        <a href="\Ventas/InventarioVentas" class="nav-link">
+                            <i class='bx bx-archive icon'></i>  
+                            <span class="link">Inventario</span>
+
+                        </a>
+                    </li>
+
+
+                    <li class="list">
+                        <a href="\Ventas/Clientes" class="nav-link">
+                            <i class='bx bx-male-female icon'></i>  
+                            <span class="link">Clientes</span>
+
+                        </a>
+                    </li>
+                </ul>
+                <div class="bottom-content">
+
+                    <li class="list">
+                        <a href="#" class="nav-link">
+                            <i class='bx bxs-id-card icon'></i>
+                            <span class="link">Perfil</span>
+
+                        </a>
+                    </li>
+
+                    <li class="list">
+                        <a href="\Index" class="nav-link">
+                            <i class='bx bx-log-out icon'></i>
+                            <span class="link">Cerrar Sesión</span>
+
+                        </a>
+                    </li>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="overlay">
+
+    <script>
+        const navBar = document.querySelector("nav"),
+            menuBtns = document.querySelectorAll(".menu-icon"),
+            overlay = document.querySelector(".overlay");
+        menuBtns.forEach(menuBtn => { 
+            menuBtn.addEventListener("click", () => {
+                navBar.classList.toggle("open")
+            })
+        })
+
+        overlay.addEventListener("click", () => {
+            navBar.classList.remove("open")
+        })
+
+    </script>
+        
+    </section>
+    
+</body>
+</html>

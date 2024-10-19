@@ -1,0 +1,163 @@
+﻿@page
+@model ERP.Pages.Ventas.CrearCotizacionModel
+@{
+    Layout = "_LayoutVentas";
+}
+
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin-top: 80px;
+    }
+
+    .contenedorPrincipal {
+        background: rgba(19, 35, 47, .9);
+        padding: 40px;
+        border-radius: 4px;
+        margin: 40px auto;
+        box-shadow: 0 4px 10px 4px rgba(19, 35, 47, .3);
+        max-width: 980px;
+        width: 90%;
+    }
+
+    h1 {
+        color: #ffffff;
+        text-align: center;
+        margin: 20px;
+    }
+
+    input, select, textarea {
+        color: #ffffff;
+        padding: 5px 10px;
+        margin-bottom: 10px;
+        background: none;
+        border: 1px solid #a0b3b0;
+        border-radius: 0;
+        transition: border-color .25s ease, box-shadow .25s;
+        width: 100%;
+    }
+
+    .nombre, .cedula-genero, .direccion {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+        .nombre div, .cedula-genero div, .direccion div {
+            flex-direction: column;
+        }
+
+    label {
+        color: #ffffff;
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+
+    .Boton {
+        display: block;
+        padding: 15px;
+        font-size: 1.5rem;
+        font-weight: 600;
+        background: #1ab188;
+        color: #ffffff;
+        text-align: center;
+        transition: all .5s ease;
+        margin: 20px auto;
+        width: 50%;
+        cursor: pointer;
+    }
+
+        .Boton:hover {
+            background: #17a085;
+        }
+
+    .text_danger {
+        color: red;
+        font-size: 12px;
+    }
+
+    .campoGrande {
+        height: 75px;
+    }
+
+    option {
+        color: #000000;
+        background-color: #ffffff;
+    }
+</style>
+
+
+<div class="contenedorPrincipal">
+    <h1>Crear Cotización</h1>
+
+    <form method="POST">
+        <!--formulario -->
+        <div class="nombre">
+            <div>
+                <label for="cedulaCliente">Cédula del Cliente</label>
+                <input type="text" id="cedulaCliente" asp-for="Cotizacion.CedulaCliente" value="@Model.Cotizacion.CedulaCliente" placeholder="Cédula del Cliente" />
+                <span asp-validation-for="Cotizacion.CedulaCliente" class="text_danger"></span>
+            </div>
+
+            <div>
+                <label for="cedulaEmpleado">Cédula del Empleado</label>
+                <input type="text" id="cedulaEmpleado" asp-for="Cotizacion.CedulaEmpleado" value="@Model.Cotizacion.CedulaEmpleado" placeholder="Cédula del Empleado" />
+                <span asp-validation-for="Cotizacion.CedulaEmpleado" class="text_danger"></span>
+            </div>
+        </div>
+        
+        <br>
+
+        <div class="cedula-genero">
+            <!-- Selects para probabilidad -->
+            <div class="input-group">
+                <label for="probabilidad">Probabilidad de Cierre</label>
+                <select id="probabilidad" asp-for="Cotizacion.Probabilidad" class="form-control">
+                    <option value="" selected disabled>Seleccione una opción</option>
+                    @foreach (var prob in Model.Probabilidades)
+                    {
+                        <option value="@prob">@prob</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="direccion">
+            <!-- Selects para Zona y Sector -->
+            <div class="input-direccion">
+                <label for="zona">Zona</label>
+                <select id="zona" asp-for="Cotizacion.Zona" class="form-control">
+                    <option value="" selected disabled>Seleccione una Zona</option>
+                    @foreach (var zona in Model.Zonas)
+                    {
+                        <option value="@zona">@zona</option>
+                    }
+                </select>
+            </div>
+
+            <div class="input-direccion">
+                <label for="sector">Sector</label>
+                <select id="sector" asp-for="Cotizacion.Sector" class="form-control">
+                    <option value="" selected disabled>Seleccione un Sector</option>
+                    @foreach (var sector in Model.Sectores)
+                    {
+                        <option value="@sector">@sector</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <!-- TextArea para la descripcion de la cotizacion -->
+        <div>
+            <label for="descripcion">Descripción</label>
+            <textarea id="descripcion" asp-for="Cotizacion.Descripcion" class="campoGrande" placeholder="Ingrese una descripción"></textarea>
+            <span asp-validation-for="Cotizacion.Descripcion" class="text_danger"></span>
+        </div>
+
+        <input class="Boton" type="submit" value="Crear Cotización" />
+    </form>
+</div>
