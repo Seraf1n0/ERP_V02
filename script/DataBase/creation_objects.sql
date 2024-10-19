@@ -1,7 +1,7 @@
 /*
 Name   : ERP
-Link   : https://github.com/DylanRodriguez22/Proyecto1_Bases1.git
-Version: 25/09/2024
+Link   : https://github.com/Seraf1n0/ERP_V02.git
+Version: 19/10/2024
 Autores: Yosimar Montenegro y Dylan Rodríguez
 --------------------------------------------------------------------
 */
@@ -21,17 +21,31 @@ GO
 CREATE SCHEMA RRHH -- Recursos humanos
 GO
 
--- Creacion de tablas
+-- Tablas catalogo
 
-CREATE TABLE RRHH.Departamento ( -- Tabla catalogo_departamento
-	nombre VARCHAR (20) PRIMARY KEY NOT NULL,
-	codigo VARCHAR (10) NOT NULL
+CREATE TABLE Ventas.Estado ( -- Tabla catalogo_Estado
+	ID INT IDENTITY (1, 1) PRIMARY KEY,
+	descripcion VARCHAR (20) NOT NULL
 );
 
-CREATE TABLE RRHH.Puesto ( -- Tabla catalogo_puesto_departamento
-	nombre VARCHAR (150) PRIMARY KEY NOT NULL,
-	nombreD_Departamento VARCHAR (20) NOT NULL,
-	FOREIGN KEY (nombreD_Departamento) REFERENCES RRHH.Departamento(nombre)
+CREATE TABLE Ventas.Etapa ( -- Tabla catalogo_Etapa
+	ID INT IDENTITY (1, 1) PRIMARY KEY,
+	descripcion VARCHAR (20) NOT NULL
+);
+
+CREATE TABLE Ventas.Zona ( -- Tabla catalogo_zona
+	ID INT IDENTITY (1, 1) PRIMARY KEY,
+	descripcion VARCHAR (50) NOT NULL
+);
+
+CREATE TABLE Ventas.Sector ( -- Tabla catalogo_sector
+	ID INT IDENTITY (1, 1) PRIMARY KEY,
+	descripcion VARCHAR (25) NOT NULL
+);
+
+CREATE TABLE Ventas.Probabilidad (
+	ID INT IDENTITY (1, 1) PRIMARY KEY,
+	descripcion INT NOT NULL
 );
 
 CREATE TABLE Ventas.TipoCedula ( -- Tabla catalogo_tipoCedula
@@ -42,6 +56,24 @@ CREATE TABLE Ventas.TipoCedula ( -- Tabla catalogo_tipoCedula
 CREATE TABLE Ventas.Genero ( -- Tabla catalogo_Genero
 	ID INT IDENTITY (1, 1) PRIMARY KEY,
 	descripcion VARCHAR (10) NOT NULL,
+);
+
+CREATE TABLE RRHH.Departamento ( -- Tabla catalogo_departamento
+	nombre VARCHAR (20) PRIMARY KEY NOT NULL,
+	codigo VARCHAR (10) NOT NULL
+);
+
+CREATE TABLE Ventas.TipoCotizacion (
+	ID INT IDENTITY (1, 1) PRIMARY KEY,
+	descripcion varchar (50) NOT NULL
+);
+
+-- Creacion de tablas
+
+CREATE TABLE RRHH.Puesto (
+	nombre VARCHAR (150) PRIMARY KEY NOT NULL,
+	nombreD_Departamento VARCHAR (20) NOT NULL,
+	FOREIGN KEY (nombreD_Departamento) REFERENCES RRHH.Departamento(nombre)
 );
 
 CREATE TABLE RRHH.Usuario (
@@ -149,31 +181,6 @@ CREATE TABLE Ventas.TelefonosCliente (
 	FOREIGN KEY (duenio_Cliente) REFERENCES Ventas.Cliente(cedula)
 );
 
-CREATE TABLE Ventas.Estado ( -- Tabla catalogo_Estado
-	ID INT IDENTITY (1, 1) PRIMARY KEY,
-	descripcion VARCHAR (20) NOT NULL
-);
-
-CREATE TABLE Ventas.Etapa ( -- Tabla catalogo_Etapa
-	ID INT IDENTITY (1, 1) PRIMARY KEY,
-	descripcion VARCHAR (20) NOT NULL
-);
-
-CREATE TABLE Ventas.Zona ( -- Tabla catalogo_zona
-	ID INT IDENTITY (1, 1) PRIMARY KEY,
-	descripcion VARCHAR (50) NOT NULL
-);
-
-CREATE TABLE Ventas.Sector ( -- Tabla catalogo_sector
-	ID INT IDENTITY (1, 1) PRIMARY KEY,
-	descripcion VARCHAR (25) NOT NULL
-);
-
-CREATE TABLE Ventas.Probabilidad (
-	ID INT IDENTITY (1, 1) PRIMARY KEY,
-	descripcion INT NOT NULL
-);
-
 CREATE TABLE Ventas.Cotizacion (
 	ID INT IDENTITY (1, 1) PRIMARY KEY,
 	cedulaCotizador_Cliente VARCHAR (20) NOT NULL,
@@ -193,11 +200,6 @@ CREATE TABLE Ventas.Cotizacion (
 	CONSTRAINT Chk_montoTotalMayor0 CHECK(montoTotal >0),
 	CONSTRAINT Chk_fechaCierreProyectadaMayorIgualHoy CHECK( fechaCierreProyectada >= CAST(GETDATE() AS DATE)),
 	CONSTRAINT Chk_fechaHoraRegistroIgualHoy CHECK(fechaHoraRegistro= GETDATE())
-);
-
-CREATE TABLE Ventas.TipoCotizacion (
-	ID INT IDENTITY (1, 1) PRIMARY KEY,
-	descripcion varchar (50) NOT NULL
 );
 
 CREATE TABLE Ventas.Caso (
@@ -357,13 +359,10 @@ CREATE TABLE Produccion.Inventario ( -- Esta tabla pertenece al schema de produc
 CREATE TABLE Ventas.FacturaInventario (
 	ID_Factura INT NOT NULL,
 	nombreA_Articulo VARCHAR(130) NOT NULL,
-	codigoB_Bodega VARCHAR (10) NOT NULL,
 	cantidadProducto INT NOT NULL, --No puede ser menor a 0
 	precioProducto FLOAT NOT NULL, --No puede ser menor a 0
 	FOREIGN KEY (ID_Factura) REFERENCES Ventas.Factura(ID),
 	FOREIGN KEY (nombreA_Articulo) REFERENCES Produccion.Articulo(nombre),
-	FOREIGN KEY (codigoB_Bodega) REFERENCES Produccion.Bodega(codigo),
-
 
 	--Check
 	CONSTRAINT Chk_cantidadProductoMayor0FI CHECK(cantidadProducto > 0),
