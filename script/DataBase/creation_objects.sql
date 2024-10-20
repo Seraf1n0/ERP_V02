@@ -23,7 +23,27 @@ GO
 
 -- Tablas catalogo
 
-CREATE TABLE Ventas.Estado ( -- Tabla catalogo_Estado
+CREATE TABLE Ventas.Prioridad (
+	ID INT IDENTITY (1, 1) PRIMARY KEY,
+	descripcion VARCHAR (20) NOT NULL
+);
+
+CREATE TABLE Ventas.TipoCaso (
+	ID INT IDENTITY (1, 1) PRIMARY KEY,
+	descripcion VARCHAR (20) NOT NULL
+);
+
+CREATE TABLE Ventas.EstadoFactura ( -- Tabla catalogo_Estado
+	ID INT IDENTITY (1, 1) PRIMARY KEY,
+	descripcion VARCHAR (20) NOT NULL
+);
+
+CREATE TABLE Ventas.EstadoCaso ( -- Tabla catalogo_EstadoCaso
+	ID INT IDENTITY (1, 1) PRIMARY KEY,
+	descripcion VARCHAR (20) NOT NULL
+);
+
+CREATE TABLE Ventas.EstadoCotizacion (
 	ID INT IDENTITY (1, 1) PRIMARY KEY,
 	descripcion VARCHAR (20) NOT NULL
 );
@@ -76,6 +96,50 @@ CREATE TABLE RRHH.Puesto (
 	FOREIGN KEY (nombreD_Departamento) REFERENCES RRHH.Departamento(nombre)
 );
 
+CREATE TABLE RRHH.Rol (
+	nombreRol VARCHAR (20) PRIMARY KEY
+);
+
+CREATE TABLE RRHH.Modulo ( -- Tabla catalogo con los modulos principales del ERP
+	nombreModulo VARCHAR (20) PRIMARY KEY 
+
+);
+
+CREATE TABLE RRHH.ModuloRol (
+	nombreRol VARCHAR (20),
+	nombreModulo VARCHAR (20),
+
+	PRIMARY KEY (nombreRol, nombreModulo),
+
+	FOREIGN KEY (nombreRol) REFERENCES RRHH.Rol(nombreRol),
+	FOREIGN KEY (nombreModulo) REFERENCES RRHH.Modulo(nombreModulo)
+);
+
+CREATE TABLE RRHH.Permisos (
+	ID INT IDENTITY (1, 1) PRIMARY KEY,
+	tipoPermiso VARCHAR (10)
+);
+
+CREATE TABLE RRHH.PermisoModulo (
+	nombreModulo VARCHAR (20),
+	tipoPermiso INT,
+
+	PRIMARY KEY (nombreModulo, tipoPermiso),
+
+	FOREIGN KEY (nombreModulo) REFERENCES RRHH.Modulo(nombreModulo),
+	FOREIGN KEY (tipoPermiso) REFERENCES RRHH.Permisos(ID)
+);
+
+CREATE TABLE RRHH.PermisoModuloRol(  -- Tabla intermedia entre tablas intermedias para personalizar los permisos por rol de mejor manera
+    nombreRol VARCHAR(20),
+    nombreModulo VARCHAR(20),
+    tipoPermiso INT,
+    PRIMARY KEY (nombreRol, nombreModulo, tipoPermiso),
+    FOREIGN KEY (nombreRol) REFERENCES RRHH.Rol(nombreRol),
+    FOREIGN KEY (nombreModulo) REFERENCES RRHH.Modulo(nombreModulo),
+    FOREIGN KEY (tipoPermiso) REFERENCES RRHH.Permisos(ID)
+);
+
 CREATE TABLE RRHH.Usuario (
 	cedula VARCHAR (20) PRIMARY KEY NOT NULL,
 	nombrePuesto_Puesto VARCHAR (150),
@@ -105,6 +169,16 @@ CREATE TABLE RRHH.Usuario (
 	--Checks
 	CONSTRAINT Chk_fechaDeNacimientoNoMayorHoy CHECK(fechaNacimiento <= CAST(GETDATE() AS DATE)),
 	CONSTRAINT Chk_salarioActualMayor0 CHECK(salarioActual > 0)
+);
+
+CREATE TABLE RRHH.RolUsuario (
+	cedulaUsuario_Usuario VARCHAR (20) NOT NULL,
+	nombreRol VARCHAR (20) NOT NULL,
+
+	PRIMARY KEY (cedulaUsuario_Usuario, nombreRol), -- PK compuesta para RolxUsuario
+
+	FOREIGN KEY (cedulaUsuario_Usuario) REFERENCES RRHH.Usuario(cedula),
+	FOREIGN KEY (nombreRol) REFERENCES RRHH.Rol(nombreRol)
 );
 
 CREATE TABLE RRHH.Pago (
@@ -149,7 +223,6 @@ CREATE TABLE RRHH.HistoricoSalario (
 	--Check
 	CONSTRAINT Chk_fechaInicioIgualHoyHS CHECK(fechaInicio = CAST(GETDATE() AS DATE)),
 	CONSTRAINT Chk_fechaFinMayorIgualInicioHS CHECK(fechaFin >=fechaInicio)
-
 );
 
 /*
@@ -191,38 +264,24 @@ CREATE TABLE Ventas.Cotizacion (
 	fechaHoraRegistro DATETIME DEFAULT GETDATE() NOT NULL, 
 	probabilidad INT NOT NULL,
 	descripcion VARCHAR (255),
-	zona VARCHAR (50) NOT NULL, --Viene del catálogo
-	sector VARCHAR (25) NOT NULL, --Viene del catálogo
+	tipoCotizacion INT NOT NULL,
+	zona INT NOT NULL,
+	sector INT NOT NULL,
+
+	-- FKs para catalogo
+	FOREIGN KEY (tipoCotizacion) REFERENCES Ventas.TipoCotizacion(ID),
+	FOREIGN KEY (probabilidad) REFERENCES Ventas.Probabilidad(ID),
+	FOREIGN KEY (zona) REFERENCES Ventas.Zona(ID),
+	FOREIGN KEY (sector) REFERENCES Ventas.Sector(ID),
 	FOREIGN KEY (cedulaCotizador_Cliente) REFERENCES Ventas.Cliente(cedula),
 	FOREIGN KEY (cedulaEmpleado_Usuario) REFERENCES RRHH.Usuario(cedula),
 
 	--Check
 	CONSTRAINT Chk_montoTotalMayor0 CHECK(montoTotal >0),
 	CONSTRAINT Chk_fechaCierreProyectadaMayorIgualHoy CHECK( fechaCierreProyectada >= CAST(GETDATE() AS DATE)),
-	CONSTRAINT Chk_fechaHoraRegistroIgualHoy CHECK(fechaHoraRegistro= GETDATE())
+	CONSTRAINT Chk_fechaHoraRegistroIgualHoy CHECK(fechaHoraRegistro= GETDATE()),
+	CONSTRAINT Chk_fechaProyectadaSinDia CHECK(DAY(fechaCierreProyectada)=1) -- El dia queda como el primero por defecto para no especificarlo
 );
-
-CREATE TABLE Ventas.Caso (
-	ID INT IDENTITY (1, 1) PRIMARY KEY,
-	IDCotizacion_Cotización INT NOT NULL,
-	estado INT NOT NULL,
-	descripcion VARCHAR (255) NOT NULL,
-	motivo VARCHAR (120) NOT NULL,
-	resultado VARCHAR (120),
-	FOREIGN KEY (IDCotizacion_Cotización) REFERENCES Ventas.Cotizacion(ID),
-	FOREIGN KEY (estado) REFERENCES Ventas.Estado(ID) -- Estado de cotización
-);
-
-CREATE TABLE Ventas.Tarea (
-	ID INT IDENTITY (1, 1) PRIMARY KEY,
-	IDCaso_Caso INT NOT NULL,
-	descripcion VARCHAR (100) NOT NULL,
-	etapa INT,
-	FOREIGN KEY (etapa) REFERENCES Ventas.Etapa(ID),
-	FOREIGN KEY (IDCaso_Caso) REFERENCES Ventas.Caso(ID)
-);
-
-
 
 CREATE TABLE Ventas.Factura (
 	ID INT IDENTITY (1, 1) PRIMARY KEY,
@@ -238,6 +297,47 @@ CREATE TABLE Ventas.Factura (
 	--Checks
 	CONSTRAINT Chk_fechaHoraIgualHoy CHECK(fechaHora = GETDATE())
 
+);
+
+CREATE TABLE Ventas.Caso (
+    ID INT IDENTITY (1, 1) PRIMARY KEY,
+    IDCotizacion_Cotizacion INT NULL,
+    IDFactura_Factura INT NULL,
+    estado INT NOT NULL,
+    tipoCaso INT NOT NULL,
+    prioridad INT NOT NULL,
+    descripcion VARCHAR (255) NOT NULL,
+    motivo VARCHAR (120) NOT NULL,
+    resultado VARCHAR (120),
+    
+    FOREIGN KEY (prioridad) REFERENCES Ventas.Prioridad(ID),
+    FOREIGN KEY (tipoCaso) REFERENCES Ventas.TipoCaso(ID),
+    FOREIGN KEY (estado) REFERENCES Ventas.EstadoCaso(ID),
+	-- FKs para la opçión
+    FOREIGN KEY (IDCotizacion_Cotizacion) REFERENCES Ventas.Cotizacion(ID),
+    FOREIGN KEY (IDFactura_Factura) REFERENCES Ventas.Factura(ID),
+
+    -- Restricción: De existir el caso deberá ser bien de factura o de cotización (no puede ser nula ambas)
+    CONSTRAINT Chk_Caso_Origen CHECK (
+        (IDCotizacion_Cotizacion IS NOT NULL AND IDFactura_Factura IS NULL) OR 
+        (IDFactura_Factura IS NOT NULL AND IDCotizacion_Cotizacion IS NULL)
+    )
+);
+
+CREATE TABLE Ventas.TareasCotizacion (
+	ID INT IDENTITY (1, 1) PRIMARY KEY,
+	cedulaAsignado_Usuario VARCHAR (20) NOT NULL,
+	descripcion VARCHAR (100) NOT NULL,
+	FOREIGN KEY (cedulaAsignado_Usuario) REFERENCES RRHH.Usuario(cedula)
+);
+
+CREATE TABLE Ventas.Tarea (
+	ID INT IDENTITY (1, 1) PRIMARY KEY,
+	IDCaso_Caso INT NOT NULL,
+	descripcion VARCHAR (100) NOT NULL,
+	etapa INT,
+	FOREIGN KEY (etapa) REFERENCES Ventas.Etapa(ID),
+	FOREIGN KEY (IDCaso_Caso) REFERENCES Ventas.Caso(ID)
 );
 
 CREATE TABLE Ventas.Salida (
@@ -372,12 +472,10 @@ CREATE TABLE Ventas.FacturaInventario (
 CREATE TABLE Ventas.CotizacionInventario ( -- Sirve como orden de compra
 	ID_Cotizacion INT NOT NULL,
 	nombreA_Articulo VARCHAR (130) NOT NULL,
-	codigoB_Bodega VARCHAR (10) NOT NULL,
 	cantidadProducto INT NOT NULL, --No puede ser menor a 0
 	precioProducto FLOAT NOT NULL, --No puede ser menor a 0
 	FOREIGN KEY (ID_Cotizacion) REFERENCES Ventas.Cotizacion(ID),
 	FOREIGN KEY (nombreA_Articulo) REFERENCES Produccion.Articulo(nombre),
-	FOREIGN KEY (codigoB_Bodega) REFERENCES Produccion.Bodega(codigo),
 
 	--Check
 	CONSTRAINT Chk_cantidadProductoMayor0CI CHECK (cantidadProducto > 0),
