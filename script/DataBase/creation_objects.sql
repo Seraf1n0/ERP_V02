@@ -93,16 +93,18 @@ CREATE TABLE Ventas.TipoCotizacion (
 CREATE TABLE RRHH.Puesto (
 	nombre VARCHAR (150) PRIMARY KEY NOT NULL,
 	nombreD_Departamento VARCHAR (20) NOT NULL,
+	activo BIT,
 	FOREIGN KEY (nombreD_Departamento) REFERENCES RRHH.Departamento(nombre)
 );
 
 CREATE TABLE RRHH.Rol (
-	nombreRol VARCHAR (20) PRIMARY KEY
+	nombreRol VARCHAR (20) PRIMARY KEY,
+	activo BIT
 );
 
 CREATE TABLE RRHH.Modulo ( -- Tabla catalogo con los modulos principales del ERP
-	nombreModulo VARCHAR (20) PRIMARY KEY 
-
+	nombreModulo VARCHAR (20) PRIMARY KEY,
+	activo BIT
 );
 
 CREATE TABLE RRHH.ModuloRol (
@@ -157,6 +159,7 @@ CREATE TABLE RRHH.Usuario (
 	fechaNacimiento DATE NOT NULL, 
 	salarioActual FLOAT NOT NULL,
 	tipoCedula INT NOT NULL,
+	activo BIT,
 	FOREIGN KEY (tipoCedula) REFERENCES Ventas.TipoCedula(ID),
 	FOREIGN KEY (genero) REFERENCES Ventas.Genero(ID),
 
@@ -242,7 +245,8 @@ CREATE TABLE Ventas.Cliente (
 	provincia VARCHAR (20) NOT NULL,
 	canton VARCHAR (20) NOT NULL,
 	distrito VARCHAR (20) NOT NULL,
-	seniaExacta VARCHAR (100) NOT NULL
+	seniaExacta VARCHAR (100) NOT NULL,
+	activo BIT,
 	FOREIGN KEY (tipoCedula) REFERENCES Ventas.TipoCedula(ID),
 	FOREIGN KEY (genero) REFERENCES Ventas.Genero(ID),
 );
@@ -364,7 +368,7 @@ CREATE TABLE Produccion.Bodega (
 	seniaExacta VARCHAR (100) NOT NULL,
 	toneladasCapacidad INT NOT NULL,
 	espacioCubico INT NOT NULL,
-
+	activo BIT,
 	--Checks
 	CONSTRAINT Chk_toneladasCapacidadMayor0 CHECK (toneladasCapacidad > 0),
 	CONSTRAINT Chk_espacioCubicoMayor0 CHECK (espacioCubico >0)
@@ -374,7 +378,7 @@ CREATE TABLE Produccion.Familia (
 	codigo VARCHAR (10) PRIMARY KEY NOT NULL,
 	nombre VARCHAR (30) NOT NULL,
 	descripcion VARCHAR (150) NOT NULL,
-	activo VARCHAR (10)
+	activo BIT,
 	CONSTRAINT AK_Nombre UNIQUE(nombre)
 );
 
@@ -393,7 +397,7 @@ CREATE TABLE Produccion.Articulo (
 	peso float NOT NULL,
 	descripcion VARCHAR (255) NOT NULL, -- Libertar de descripción de producto 
 	marca VARCHAR (50) NOT NULL,
-	activo VARCHAR (10),
+	activo BIT,
 	FOREIGN KEY (codigoF_Familia) REFERENCES Produccion.Familia(codigo),
 	CONSTRAINT AK_Codigo UNIQUE(codigo), -- Los codigos de productos deben ser unicos a no ser que sean eliminados del sistema
 
