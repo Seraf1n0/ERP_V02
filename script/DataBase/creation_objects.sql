@@ -267,8 +267,10 @@ CREATE TABLE Ventas.Cotizacion (
 	tipoCotizacion INT NOT NULL,
 	zona INT NOT NULL,
 	sector INT NOT NULL,
+	estado INT NOT NULL,
 
 	-- FKs para catalogo
+	FOREIGN KEY (estado) REFERENCES Ventas.EstadoCotizacion (ID),
 	FOREIGN KEY (tipoCotizacion) REFERENCES Ventas.TipoCotizacion(ID),
 	FOREIGN KEY (probabilidad) REFERENCES Ventas.Probabilidad(ID),
 	FOREIGN KEY (zona) REFERENCES Ventas.Zona(ID),
@@ -288,9 +290,12 @@ CREATE TABLE Ventas.Factura (
 	responsable_Usuario VARCHAR (20) NOT NULL,
 	comprador_Cliente VARCHAR (20) NOT NULL,
 	fechaHora DATETIME DEFAULT GETDATE() NOT NULL,
-	estado VARCHAR (15),
 	montoTotal float NOT NULL,
+	estado INT NOT NULL,
 	motivoAnulacion VARCHAR (200) NOT NULL, -- En caso que la factura haya sido cancelada antes de su confirmación
+
+	-- FK a catalogos
+	FOREIGN KEY (estado) REFERENCES Ventas.EstadoFactura(ID),
 	FOREIGN KEY (responsable_Usuario) REFERENCES RRHH.Usuario(cedula),
 	FOREIGN KEY (comprador_Cliente) REFERENCES Ventas.Cliente(cedula),
 
