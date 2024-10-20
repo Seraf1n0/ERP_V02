@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "odWV+JJq3e0=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP_V2\\ERP_V2\\ERP_V2.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Dylan\\.nuget\\packages\\bootstrap\\5.3.3\\bootstrap.5.3.3.nupkg.sha512"
+  ],
+  "logs": []
+}
