@@ -1,0 +1,88 @@
+﻿@page
+@model ERP.Pages.Ventas.ClientesModel
+@{
+    Layout = "_LayoutVentas";
+}
+
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        box-shadow: 8px 8px 0px #bdbdbdbf;
+        width: 80%;
+        background-color: #ffffff;
+        border-radius: 30px;
+    }
+
+    .container .table_header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 30px 0;
+    }
+
+    table {
+        border-spacing: 0;
+        margin-top: 1rem;
+    }
+
+    thead {
+        background-color: #13232f;
+        color: white;
+    }
+
+    th {
+        padding: 10px;
+    }
+
+    tbody tr td {
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #dfdfdf;
+    }
+</style>
+
+<div class="container">
+    <div class="table_header">
+        <h2>Clientes</h2>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Cédula</th>
+                <th>Tipo</th>
+                <th>Nombre Completo</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cliente in Model.clientes)
+            {
+                <tr>
+                    <td>@cliente.cedula</td>
+                    <td>@cliente.tipoCedula</td>
+                    <td>
+                        @if (cliente.tipo)
+                        {
+                            @cliente.nombre @cliente.primerApellido @cliente.segundoApellido
+                        }
+                        else
+                        {
+                            @cliente.nombre
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="table_footer">
+        <p>Total de clientes: @Model.clientes.Count()</p>
+    </div>
+</div>
