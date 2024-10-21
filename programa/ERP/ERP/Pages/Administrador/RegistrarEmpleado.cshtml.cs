@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 using System.Data.SqlClient;
 
-namespace ERP.Pages.RRHH
+namespace ERP.Pages.Administrador
 {
     public class RegistrarEmpleadoModel : PageModel
     {
@@ -48,8 +48,8 @@ namespace ERP.Pages.RRHH
         //Esta función se ejecuta cuando se presiona el botón de Registrar Empleado
         public void OnPost()
         {
-            
-            
+
+
         }
 
         public void consultaPuestos()
@@ -64,12 +64,13 @@ namespace ERP.Pages.RRHH
                     SqlCommand cmd = conexion.CreateCommand();
                     cmd.CommandText = "select nombre from RRHH.Puesto where nombreD_Departamento = 'RRHH'";
                     var reader = cmd.ExecuteReader();
-                    while (reader.Read()) {
+                    while (reader.Read())
+                    {
                         puestosRRHH.Add(reader.GetString(0));
                     }
                     conexion.Close();
                 }
-                
+
             }
             catch (SqlException ex) { }
 

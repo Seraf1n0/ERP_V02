@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+xKlqwXciLo=",
+  "dgSpecHash": "2c2BlrdfwBA=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Dylan\\Documents\\Proyecto1_Bases1\\Codigo\\ERP\\ERP\\ERP.csproj",
+  "projectFilePath": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\ERP.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dylan\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\Dylan\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
