@@ -1,0 +1,14 @@
+Nombre de los modulos:
+
+Empleados
+Planilla
+Clientes
+Histórico de Puestos
+Historico de Salarios
+Facturación
+Inventario
+Entradas de Inventario
+Salidas de Inventario
+Movimientos de Inventarios
+Casos
+Tareas
