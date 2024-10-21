@@ -288,6 +288,93 @@
             </div>
         </div>
 
+        <h2>Permisos del Usuario</h2>
+            <div class="card">
+                <h5 class="card-header">Marque en la tabla los permisos que tendrá el ususario</h5>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Módulo</th>
+                                <th scope="col">Crear</th>
+                                <th scope="col">Visualizar</th>
+                                <th scope="col">Reportes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Empleados</td>
+                                <td> </td>
+                                <td><input type="checkbox" name="empleadosVisualizar"></td>
+                                <td> </td>
+                            </tr>
+                            <tr>
+                                <td>Planilla</td>
+                                <td><input type="checkbox" name="planillaCrear"></td>
+                                <td><input type="checkbox" name="planillaVisualizar"></td>
+                                <td><input type="checkbox" name="planillaReportes"></td>
+                            </tr>
+                            <tr>
+                                <td>Clientes</td>
+                                <td><input type="checkbox" name="clientesCrear"></td>
+                                <td><input type="checkbox" name="clientesVisualizar"></td>
+                                <td><input type="checkbox" name="clientesReportes"></td>
+                            </tr>
+                            <tr>
+                                <td>Histórico de Puestos</td>
+                                <td><input type="checkbox" name="historicoPuestosCrear"></td>
+                                <td><input type="checkbox" name="historicoPuestosVisualizar"></td>
+                                <td><input type="checkbox" name="historicoPuestosReportes"></td>
+                            </tr>
+                            <tr>
+                                <td>Histórico de Salarios</td>
+                                <td><input type="checkbox" name="historicoSalariosCrear"></td>
+                                <td><input type="checkbox" name="historicoSalariosVisualizar"></td>
+                                <td><input type="checkbox" name="historicoSalariosReportes"></td>
+                            </tr>
+                            <tr>
+                                <td>Facturación</td>
+                                <td><input type="checkbox" name="facturacionCrear"></td>
+                                <td><input type="checkbox" name="facturacionVisualizar"></td>
+                                <td><input type="checkbox" name="facturacionReportes"></td>
+                            </tr>
+                            <tr>
+                                <td>Cotizaciones</td>
+                                <td><input type="checkbox" name="cotizacionCrear"></td>
+                                <td><input type="checkbox" name="cotizacionVisualizar"></td>
+                                <td><input type="checkbox" name="cotizacionReportes"></td>
+                            </tr>
+                            <tr>
+                                <td>Inventario</td>
+                                <td> </td>
+                                <td><input type="checkbox" name="inventarioVisualizar"></td>
+                                <td> </td>
+                            </tr>
+                            <tr>
+                                <td>Entradas de Inventario</td>
+                                <td><input type="checkbox" name="entradasDeInventarioCrear"></td>
+                                <td><input type="checkbox" name="entradasDeInventarioVisualizar"></td>
+                                <td><input type="checkbox" name="entradasDeInventarioReportes"></td>
+                            </tr>
+                            <tr>
+                                <td>Salidas de Inventario</td>
+                                <td><input type="checkbox" name="salidasDeInventarioCrear"></td>
+                                <td><input type="checkbox" name="salidasDeInventarioVisualizar"></td>
+                                <td><input type="checkbox" name="salidasDeInventarioReportes"></td>
+                            </tr>
+                            <tr>
+                                <td>Movimientos de Inventario</td>
+                                <td><input type="checkbox" name="movimientosDeInventarioCrear"></td>
+                                <td><input type="checkbox" name="movimientosDeInventarioVisualizar"></td>
+                                <td><input type="checkbox" name="movimientosDeInventarioReportes"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        
+
+
         <!--Botón para registrar-->
         <br> <br />
         <input class="Boton" type="submit" name="Registar" value="Registrar Empleado" />
