@@ -240,15 +240,18 @@ CREATE TABLE Ventas.Cliente (
 	segundoNombre VARCHAR (20) NULL,
 	primerApellido VARCHAR (20) NULL,
 	segundoApellido VARCHAR (20) NULL,
-	genero INT NOT NULL,
 	email VARCHAR (50) NOT NULL,
 	provincia VARCHAR (20) NOT NULL,
 	canton VARCHAR (20) NOT NULL,
 	distrito VARCHAR (20) NOT NULL,
 	seniaExacta VARCHAR (100) NOT NULL,
 	activo BIT,
+	zona INT NOT NULL,
+	sector INT NOT NULL,
 	FOREIGN KEY (tipoCedula) REFERENCES Ventas.TipoCedula(ID),
-	FOREIGN KEY (genero) REFERENCES Ventas.Genero(ID),
+	FOREIGN KEY (zona) REFERENCES Ventas.Zona(ID),
+	FOREIGN KEY (sector) REFERENCES Ventas.Sector(ID)
+
 );
 
 -- Tabla del multievaluado Telefonos

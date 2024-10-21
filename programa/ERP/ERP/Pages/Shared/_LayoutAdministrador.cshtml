@@ -32,15 +32,16 @@
 
             <div class="sidebar-content">
                 <ul class="lists">
-
-                    <li class="list">
-                        <a href="\Administrador/RegistrarEmpleado" class="nav-link">
-                            <i class='bx bx-face icon'></i>
-                            <span class="link">Empleados</span>
-
-                        </a>
-                    </li>
-
+                    
+                    <button class="dropdown-btn">
+                        <i class='bx bx-face icon'></i> Empleados
+                        <!-- Flecha abajo -->
+                    </button>
+                    <div class="dropdown-container">
+                        <a href="\Administrador/RegistrarEmpleado">Crear</a>
+                        <a href="#link2">Editar</a>
+                        <a href="#link3">Enlace 3</a>
+                    </div>
 
                     <li class="list">
                         <a href="\Administrador/PaginaPrincipal" class="nav-link">
@@ -114,6 +115,15 @@
             navBar.classList.remove("open")
         })
 
+            var dropdown = document.querySelector(".dropdown-btn");
+            dropdown.addEventListener("click", function () {
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
+                }
+            });
     </script>
         
     </section>

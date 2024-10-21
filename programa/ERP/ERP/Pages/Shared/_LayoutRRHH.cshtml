@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="~/css/estilo_LayoutVentas.css" asp-append-version="true" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css" />
     
     
 
@@ -75,7 +75,20 @@
                         </a>
                     </li>
 
+                    <li class="list">
+                        <a href="\Ventas/InventarioVentas" class="nav-link">
+                            <i class='bx bx-archive icon'></i>
+                            <span class="link">Inventario</span>
 
+                        </a>
+                    </li>
+
+                    <li class="list">
+                        <a href="\Ventas/CrearCotizacion" class="nav-link">
+                            <i class='bx bx-spreadsheet icon'></i>
+                            <span class="link">Crear Cotización</span>
+                        </a>
+                    </li>
                     
                 </ul>
                 <div class="bottom-content">
@@ -116,7 +129,11 @@
         })
 
     </script>
-        
+    <!--Para el combobox que filtra-->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
     </section>
 
     <!-- Bootstrap -->
