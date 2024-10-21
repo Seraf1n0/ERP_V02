@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dylan\\Documents\\Proyecto1_Bases1\\Codigo\\ERP\\ERP\\ERP.csproj": {}
+    "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\ERP.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dylan\\Documents\\Proyecto1_Bases1\\Codigo\\ERP\\ERP\\ERP.csproj": {
+    "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\ERP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dylan\\Documents\\Proyecto1_Bases1\\Codigo\\ERP\\ERP\\ERP.csproj",
+        "projectUniqueName": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\ERP.csproj",
         "projectName": "ERP",
-        "projectPath": "C:\\Users\\Dylan\\Documents\\Proyecto1_Bases1\\Codigo\\ERP\\ERP\\ERP.csproj",
+        "projectPath": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\ERP.csproj",
         "packagesPath": "C:\\Users\\Dylan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dylan\\Documents\\Proyecto1_Bases1\\Codigo\\ERP\\ERP\\obj\\",
+        "outputPath": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Dylan\\AppData\\Roaming\\NuGet\\NuGet.Config",

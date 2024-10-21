@@ -9,151 +9,151 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ERP
 build_property.RootNamespace = ERP
-build_property.ProjectDir = C:\Users\Dylan\Documents\Proyecto1_Bases1\Codigo\ERP\ERP\
+build_property.ProjectDir = C:\Users\Dylan\Documents\ERP_V02\programa\ERP\ERP\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Dylan\Documents\Proyecto1_Bases1\Codigo\ERP\ERP
+build_property.MSBuildProjectDirectory = C:\Users\Dylan\Documents\ERP_V02\programa\ERP\ERP
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/Administrador/Familias.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Administrador/Familias.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5pc3RyYWRvclxGYW1pbGlhcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/Administrador/InsertarFamilias.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Administrador/InsertarFamilias.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5pc3RyYWRvclxJbnNlcnRhckZhbWlsaWFzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/Administrador/InsertarPuesto.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Administrador/InsertarPuesto.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5pc3RyYWRvclxJbnNlcnRhclB1ZXN0by5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/Administrador/InsertarSector.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Administrador/InsertarSector.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5pc3RyYWRvclxJbnNlcnRhclNlY3Rvci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/Administrador/InsertarZonas.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Administrador/InsertarZonas.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5pc3RyYWRvclxJbnNlcnRhclpvbmFzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/Administrador/PaginaPrincipal.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Administrador/PaginaPrincipal.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5pc3RyYWRvclxQYWdpbmFQcmluY2lwYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/Administrador/Sector.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Administrador/RegistrarEmpleado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5pc3RyYWRvclxSZWdpc3RyYXJFbXBsZWFkby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Administrador/Sector.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5pc3RyYWRvclxTZWN0b3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/Administrador/Zonas.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Administrador/Zonas.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5pc3RyYWRvclxab25hcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/Error.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/Index.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/Privacy.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/Produccion/PaginaPrincipalProduccion.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Produccion/PaginaPrincipalProduccion.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjY2lvblxQYWdpbmFQcmluY2lwYWxQcm9kdWNjaW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/RRHH/Clientes.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/RRHH/Clientes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUlJISFxDbGllbnRlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/RRHH/Empleados.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/RRHH/Empleados.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUlJISFxFbXBsZWFkb3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/RRHH/HistoricoDePuestos.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/RRHH/HistoricoDePuestos.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUlJISFxIaXN0b3JpY29EZVB1ZXN0b3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/RRHH/HistoricoDeSalarios.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/RRHH/HistoricoDeSalarios.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUlJISFxIaXN0b3JpY29EZVNhbGFyaW9zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/RRHH/PaginaPrincipalRRHH.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/RRHH/PaginaPrincipalRRHH.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUlJISFxQYWdpbmFQcmluY2lwYWxSUkhILmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/RRHH/Planilla.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/RRHH/Planilla.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUlJISFxQbGFuaWxsYS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/RRHH/RegistrarCliente.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/RRHH/RegistrarCliente.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUlJISFxSZWdpc3RyYXJDbGllbnRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/RRHH/RegistrarEmpleado.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUlJISFxSZWdpc3RyYXJFbXBsZWFkby5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/Shared/_LayoutAdministrador.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Shared/_LayoutAdministrador.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRBZG1pbmlzdHJhZG9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/Shared/_LayoutProduccion.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Shared/_LayoutProduccion.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRQcm9kdWNjaW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/Shared/_LayoutRRHH.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Shared/_LayoutRRHH.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRSUkhILmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/Shared/_LayoutSinEstilo.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Shared/_LayoutSinEstilo.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRTaW5Fc3RpbG8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/Shared/_LayoutVentas.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Shared/_LayoutVentas.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRWZW50YXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/Ventas/Clientes.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Ventas/Clientes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmVudGFzXENsaWVudGVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/Ventas/Cotizacion.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Ventas/Cotizacion.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmVudGFzXENvdGl6YWNpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/Ventas/CrearCotizacion.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Ventas/CrearCotizacion.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmVudGFzXENyZWFyQ290aXphY2lvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/Ventas/Factura.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Ventas/Factura.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmVudGFzXEZhY3R1cmEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/Ventas/InventarioVentascshtml.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmVudGFzXEludmVudGFyaW9WZW50YXNjc2h0bWwuY3NodG1s
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Ventas/InventarioVentas.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmVudGFzXEludmVudGFyaW9WZW50YXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/Ventas/PaginaPrincipalVentas.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Ventas/PaginaPrincipalVentas.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmVudGFzXFBhZ2luYVByaW5jaXBhbFZlbnRhcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/_ViewImports.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/_ViewStart.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dylan/Documents/Proyecto1_Bases1/Codigo/ERP/ERP/Pages/Shared/_Layout.cshtml]
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-ra877okavw
