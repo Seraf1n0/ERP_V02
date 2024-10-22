@@ -103,13 +103,13 @@ CREATE TABLE RRHH.Rol (
 );
 
 CREATE TABLE RRHH.Modulo ( -- Tabla catalogo con los modulos principales del ERP
-	nombreModulo VARCHAR (20) PRIMARY KEY,
+	nombreModulo VARCHAR (60) PRIMARY KEY,
 	activo BIT
 );
 
 CREATE TABLE RRHH.ModuloRol (
 	nombreRol VARCHAR (20),
-	nombreModulo VARCHAR (20),
+	nombreModulo VARCHAR (60),
 
 	PRIMARY KEY (nombreRol, nombreModulo),
 
@@ -123,7 +123,7 @@ CREATE TABLE RRHH.Permisos (
 );
 
 CREATE TABLE RRHH.PermisoModulo (
-	nombreModulo VARCHAR (20),
+	nombreModulo VARCHAR (60),
 	tipoPermiso INT,
 
 	PRIMARY KEY (nombreModulo, tipoPermiso),
@@ -134,7 +134,7 @@ CREATE TABLE RRHH.PermisoModulo (
 
 CREATE TABLE RRHH.PermisoModuloRol(  -- Tabla intermedia entre tablas intermedias para personalizar los permisos por rol de mejor manera
     nombreRol VARCHAR(20),
-    nombreModulo VARCHAR(20),
+    nombreModulo VARCHAR (60),
     tipoPermiso INT,
     PRIMARY KEY (nombreRol, nombreModulo, tipoPermiso),
     FOREIGN KEY (nombreRol) REFERENCES RRHH.Rol(nombreRol),
