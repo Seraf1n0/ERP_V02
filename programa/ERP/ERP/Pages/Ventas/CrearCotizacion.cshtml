@@ -2,7 +2,7 @@
 @model ERP.Pages.Ventas.CrearCotizacionModel
 @{
     Layout = "_LayoutRRHH";
-    var fechaHoyH = Model.fechaHoy.ToString("MM-yyyy");
+    var fechaHoyH = Model.fechaHoy.ToString("yyyy-MM");
 }
 
 <style>
@@ -38,26 +38,17 @@
         transform: translateX(-50%); /* Alinear al centro */
     }
 
-    .seleccionCliente {
-        display: flex;
-        justify-content: space-between;
-    }
-
-        .seleccionCliente div {
-            display: flex;
-            flex-direction: column; /* Asegura que los inputs y mensajes de error estén alineados verticalmente */
-        }
+    
 
     label {
         color: #ffffff;
-        /*margin-right: 15px;*/
-        /*margin-left: 15px;*/
         margin: 20px;
         font-size: 20px;
     }
 
+    /*Para el modal que se abre al presionar el botón Agregar Producto*/
     .modal {
-        display: none; /* Oculta el recuadro inicialmente */
+        display: none; 
         position: fixed;
         top: 50%;
         left: 50%;
@@ -67,13 +58,13 @@
         border-radius: 8px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         z-index: 1000;
-        max-width: 600px; /* Limitar ancho máximo */
-        max-height: 400px; /* Limitar altura máxima */
-        overflow-y: auto; /* Habilitar scroll vertical si el contenido excede la altura */
+        max-width: 900px; 
+        max-height: 700px; 
+        overflow-y: auto; 
     }
 
-    .overlay {
-        display: none; /* Oculta la superposición inicialmente */
+    .over {
+        display: none; 
         position: fixed;
         top: 0;
         left: 0;
@@ -95,6 +86,59 @@
         .close-button:hover {
             background-color: #c82333;
         }
+
+    input {
+        color: #ffffff;
+        /*font-size: 18px;*/
+        padding: 5px 10px;
+        margin-right: 15px;
+        /*margin-left: 15px;*/
+        margin-bottom: 10px;
+        background: none;
+        background-image: none;
+        border: 1px solid #a0b3b0;
+        border-radius: 0;
+        transition: border-color .25s ease, box-shadow .25s;
+    }
+
+    select {
+        color: #ffffff; /* Texto en blanco para combinar */
+        padding: 5px 10px; /* Igual que el input */
+        margin-right: 15px;
+        margin-left: 15px;
+        margin-bottom: 10px;
+        background: none;
+        border: 1px solid #a0b3b0;
+        border-radius: 0;
+        transition: border-color .25s ease, box-shadow .25s;
+        appearance: none; /* Elimina el estilo predeterminado del navegador */
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-color: transparent;
+    }
+
+    option {
+        color: #000000; /* Texto negro dentro de las opciones desplegadas */
+        background-color: #ffffff; /* Fondo blanco para mejor contraste */
+    }
+
+     .selectpicker {
+        color: #ffffff; /* Texto en blanco para combinar */
+        padding: 5px 10px; /* Igual que el input */
+        margin-right: 15px;
+        margin-left: 15px;
+        margin-bottom: 10px;
+        background: none;
+        border: 1px solid #a0b3b0;
+        border-radius: 0;
+        transition: border-color .25s ease, box-shadow .25s;
+    }
+
+     .dropdown-menu .option {
+        color: #000000; /* Texto negro dentro de las opciones desplegadas */
+        background-color: #ffffff; /* Fondo blanco para mejor contraste */
+    }
+
 </style>
 
 
@@ -102,7 +146,7 @@
     <h1>Crear Cotización</h1>
     <div class="linea"></div>
     <form method="POST">
-        <div class"seleccionCliente">
+        <div class="seleccionCliente">
             <!--Detalles de la cotización. Todo lo que vaya en una misma línea
                 va en un div por separado para que el estilo lo acomode
             -->
@@ -117,7 +161,6 @@
                 <input type="text" id="primerNombre" asp-for="nombreCliente" value="@Model.nombreCliente" placeholder="Primer Nombre" />
                 
             </div>
-                
             <div>
                 <label>Zona: </label>
                 <input type="text" id="primerNombre" asp-for="nombreCliente" value="@Model.nombreCliente" placeholder="Primer Nombre" />
@@ -126,7 +169,7 @@
             </div>
             <div>
                 <label for="fecha">Mes proyectado de cierre: </label>
-                <input type="month" id="fecha" name="fecha" value="@fechaHoyH" max="@fechaHoyH"/>
+                <input type="month" id="fecha" name="fecha" value="@fechaHoyH" max="@fechaHoyH" />
                 <label for="fecha">Probabilidad de cierre: </label>
                 <select id="opciones" name="probabilidadCierre">
                     <option value="opcion1">Opción 1</option>
@@ -139,7 +182,7 @@
                 <label for="fecha">Descripción: </label>
             </div>
             <div>
-                
+
                 <textarea id="descripcion" name="descripcion" rows="5" cols="50"></textarea>
             </div>
 
@@ -147,7 +190,7 @@
             <div>
                 <button type="button" class="botonAgregarProducto" id="botonAgregarProducto">Agregar Producto</button>
             </div>
-            
+
             <!--Tabla-->
             <div class="card">
                 <div class="card-body">
@@ -163,46 +206,61 @@
                     </table>
                 </div>
             </div>
-            
+
         </div>
-
-
+                
+           
 
     </form>
 </div>
 
 
 <!-- Modal vacío -->
-<div class="overlay" id="overlay"></div>
+<div class="over" id="over"></div>
 <div class="modal" id="modal">
-    <h2>Información Importante</h2>
-    <p>Aquí puedes mostrar la información que desees.</p>
+    <h2>Productos</h2>
+    <p>Seleccione el producto que desea agregar a la cotización</p>
+     <!--Tabla del modal-->
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col" style="width: 40%;">Producto</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Precio Unitario</th>
+                        <th scope="col">Precio Total</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
     <button class="close-button" id="closeModal">Cerrar</button>
 </div>
 
 
 <script>
     // Obtiene los elementos del DOM
-    const openModalButton = document.getElementById('openModal');
+    const botonAgregarProducto = document.getElementById('botonAgregarProducto');
     const closeModalButton = document.getElementById('closeModal');
     const modal = document.getElementById('modal');
-    const overlay = document.getElementById('overlay');
+    const over = document.getElementById('over');
 
     // Abre el recuadro blanco
     botonAgregarProducto.addEventListener('click', () => {
         modal.style.display = 'block';
-        overlay.style.display = 'block';
+        over.style.display = 'block';
     });
 
     // Cierra el recuadro blanco
     closeModalButton.addEventListener('click', () => {
         modal.style.display = 'none';
-        overlay.style.display = 'none';
+        over.style.display = 'none';
     });
 
     // Cierra el recuadro al hacer clic fuera de él
-    overlay.addEventListener('click', () => {
+    over.addEventListener('click', () => {
         modal.style.display = 'none';
-        overlay.style.display = 'none';
+        over.style.display = 'none';
     });
 </script>
