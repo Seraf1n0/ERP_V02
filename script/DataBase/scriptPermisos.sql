@@ -49,4 +49,9 @@ insert into RRHH.Modulo values ('Empleados', 1),
 ('Clientes', 1),
 ('Salidas de Inventari', 1)
 
-
+--Voy a suponer que esto funciona
+insert into RRHH.PermisoModuloRol values ('Aquí pongo aleatorio', 'Empleados', 'Visualizacion'), 
+('Aquí pongo aleatorio', 'Planilla', 'Visualizacion'), 
+('Aquí pongo aleatorio', 'Planilla', 'Reporteria'),
+('Aquí pongo aleatorio', 'Clientes', 'Reporteria'),
+('Aquí pongo aleatorio', 'Salidas de Inventari', 'Edicion');
