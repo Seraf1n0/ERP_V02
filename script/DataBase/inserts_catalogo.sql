@@ -68,11 +68,6 @@ INSERT INTO Ventas.Genero (descripcion) VALUES
 ('Masculino'),
 ('Otro');
 
-INSERT INTO RRHH.Departamento (nombre, codigo) VALUES
-('Producción', 'PROD'),
-('Recursos Humanos', 'RRHH'),
-('Ventas', 'VENT');
-
 INSERT INTO Ventas.TipoCotizacion (descripcion) VALUES
 ('Estado'),
 ('Rápida'),
