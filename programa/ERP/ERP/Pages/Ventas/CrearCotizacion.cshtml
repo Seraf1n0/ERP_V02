@@ -4,7 +4,7 @@
     Layout = "_LayoutRRHH";
     var fechaHoyH = Model.fechaHoy.ToString("yyyy-MM");
 }
-
+    
 <style>
     body {
         display: flex;
@@ -101,6 +101,11 @@
         transition: border-color .25s ease, box-shadow .25s;
     }
 
+    .inputTabla{
+        color: black;
+
+    }
+
     select {
         color: #ffffff; /* Texto en blanco para combinar */
         padding: 5px 10px; /* Igual que el input */
@@ -141,6 +146,24 @@
 
 </style>
 
+<script>
+    //Intentando pasar la lista de productos al html para manejar lo de agregar en la vista
+    var articulosJ = []
+    @foreach(var articulo in Model.articulos)
+    {
+        <text>
+            articulosJ.push({
+                Codigo: @articulo.codigo.ToString(),
+                Nombre: "@articulo.nombre",
+                Marca: "@articulo.marca",
+                Precio: @articulo.precio.ToString()
+        });
+        </text>
+    }
+        console.log(articulosJ)
+    
+
+</script>
 
 <div class="contenedorPrincipal">
     <h1>Crear Cotización</h1>
@@ -152,30 +175,30 @@
             -->
             <div>
                 <label>Cliente: </label>
-                <select class="selectpicker" data-live-search="true">
-                    <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
-                    <option data-tokens="mustard">Burger, Shake and a Smile</option>
-                    <option data-tokens="frosting">Sugar, Spice and all things nice</option>
+                <select class="clientSelected" id="clientSelected" data-live-search="true">
+                    @foreach (var cedula in Model.nombresCliente)
+                    {
+                        <option data-tokens=@cedula.Key>@cedula.Key</option>
+                    }
                 </select>
                 <label>Nombre: </label>
-                <input type="text" id="primerNombre" asp-for="nombreCliente" value="@Model.nombreCliente" placeholder="Primer Nombre" />
-                
+                <input type="text" id="nombreCliente" asp-for="nombreCliente" value="@Model.nombreCliente" />
             </div>
             <div>
                 <label>Zona: </label>
-                <input type="text" id="primerNombre" asp-for="nombreCliente" value="@Model.nombreCliente" placeholder="Primer Nombre" />
+                <input type="text" id="zonaCliente" asp-for="zonaCliente" value="@Model.zonaCliente"/>
                 <label>Sector: </label>
-                <input type="text" id="primerNombre" asp-for="nombreCliente" value="@Model.nombreCliente" placeholder="Primer Nombre" />
+                <input type="text" id="sectorCliente" asp-for="sectorCliente" value="@Model.sectorCliente" />
             </div>
             <div>
                 <label for="fecha">Mes proyectado de cierre: </label>
                 <input type="month" id="fecha" name="fecha" value="@fechaHoyH" max="@fechaHoyH" />
                 <label for="fecha">Probabilidad de cierre: </label>
                 <select id="opciones" name="probabilidadCierre">
-                    <option value="opcion1">Opción 1</option>
-                    <option value="opcion2">Opción 2</option>
-                    <option value="opcion3">Opción 3</option>
-                    <option value="opcion4">Opción 4</option>
+                    @foreach (var probabilidad in Model.probabilidades)
+                    {
+                        <option value="@probabilidad.Value">@probabilidad.Value</option>
+                    }
                 </select>
             </div>
             <div>
@@ -194,15 +217,20 @@
             <!--Tabla-->
             <div class="card">
                 <div class="card-body">
-                    <table class="table table-hover">
+                    <table id="tablaArticulosSeleccionados" class="table table-hover">
                         <thead>
                             <tr>
+                                <th scope="col">Código</th>
+                                <th scope="col">Marca</th>
                                 <th scope="col" style="width: 40%;">Producto</th>
                                 <th scope="col">Cantidad</th>
                                 <th scope="col">Precio Unitario</th>
                                 <th scope="col">Precio Total</th>
                             </tr>
                         </thead>
+                        <tbody>
+
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -223,15 +251,18 @@
      <!--Tabla del modal-->
     <div class="card">
         <div class="card-body">
-            <table class="table table-hover">
+            <table id="tablaTodosLosProductos" class="table table-hover">
                 <thead>
                     <tr>
+                        <th scope="col">Código</th>
+                        <th scope="col">Marca</th>
                         <th scope="col" style="width: 40%;">Producto</th>
-                        <th scope="col">Cantidad</th>
                         <th scope="col">Precio Unitario</th>
-                        <th scope="col">Precio Total</th>
                     </tr>
                 </thead>
+                <tbody>
+                    <!-- Las filas se agregarán aquí -->
+                </tbody>
             </table>
         </div>
     </div>
@@ -263,4 +294,122 @@
         modal.style.display = 'none';
         over.style.display = 'none';
     });
+
+    
 </script>
+<script>
+    // Esperar a que el documento esté listo
+    document.addEventListener("DOMContentLoaded", function () {
+        // Obtener el diccionario desde el modelo y convertirlo a un objeto JavaScript
+        var sectoresCliente = @Html.Raw(Json.Serialize(Model.sectoresCliente));
+        var zonasCliente = @Html.Raw(Json.Serialize(Model.zonasCliente));
+        var nombresCliente = @Html.Raw(Json.Serialize(Model.nombresCliente));
+
+        // Obtener el elemento select
+        var selectElement = document.getElementById("clientSelected");
+
+        // Obtener el input cuyo valor cambiará
+        var inputElement = document.getElementById("sectorCliente");
+        var inputNombre = document.getElementById("nombreCliente");
+        var inputZona = document.getElementById("zonaCliente");
+        // Agregar un evento change al select
+        selectElement.addEventListener("change", function () {
+            // Obtener el valor seleccionado
+            var valorSeleccionado = this.value;
+            console.log("Se ha cambiado el dato a: " + valorSeleccionado);
+
+            // Buscar en el diccionario el valor correspondiente
+            if (sectoresCliente.hasOwnProperty(valorSeleccionado)) {
+                // Actualizar el valor del input
+                inputElement.value = sectoresCliente[valorSeleccionado];
+                inputZona.value = zonasCliente[valorSeleccionado];
+                inputNombre.value = nombresCliente[valorSeleccionado];
+                
+            } else {
+                // Limpiar el campo si no hay coincidencia
+                inputElement.value = '';
+                inputZona.value = '';
+                inputNombre.value = '';
+            }
+        });
+    });
+
+    // Para llenar la tabla con todos los productos y manejar los borrados entre ambas
+    window.onload = function () {
+        llenarTablaTodosLosProductos(); // Llenar la tabla de todos los productos al cargar
+    };
+
+    // Función para llenar la tabla de todos los productos
+    function llenarTablaTodosLosProductos() {
+        var tableBody = document.querySelector('#tablaTodosLosProductos tbody'); // Selecciona el tbody de la tabla por ID
+        tableBody.innerHTML = ''; // Limpiar el tbody antes de llenarlo
+
+        articulosJ.forEach(function (articulo, index) { // Agregamos index para eliminar el artículo
+            var row = document.createElement('tr'); // Crear una nueva fila
+            row.innerHTML = `
+                <td>${articulo.Codigo}</td>
+                <td>${articulo.Marca}</td>
+                <td>${articulo.Nombre}</td>
+                <td>${articulo.Precio}</td>
+            `;
+
+            // Agregar el evento de clic a la fila
+            row.addEventListener('click', function () {
+                // Agregar el artículo a la tabla de artículos seleccionados
+                agregarArticuloSeleccionado(articulo);
+                // Eliminar el artículo de la lista
+                articulosJ.splice(index, 1); // Elimina el artículo de la lista usando su índice
+                llenarTablaTodosLosProductos(); // Actualiza la tabla de todos los productos
+                const modal = document.getElementById('modal');
+                const over = document.getElementById('over');
+                modal.style.display = 'none';
+                over.style.display = 'none';
+                console.log(articulosJ); // Muestra la lista actualizada en la consola
+            });
+
+            tableBody.appendChild(row); // Agregar la fila al tbody
+        });
+    }
+
+    // Función para agregar un artículo a la tabla de artículos seleccionados
+    function agregarArticuloSeleccionado(articulo) {
+        var tableBodySeleccionados = document.querySelector('#tablaArticulosSeleccionados tbody'); // Selecciona el tbody de la tabla de artículos seleccionados
+        var row = document.createElement('tr'); // Crear una nueva fila
+        row.innerHTML = `
+            <td>${articulo.Codigo}</td>
+            <td>${articulo.Marca}</td>
+            <td>${articulo.Nombre}</td>
+            <td><input type="number" class="inputTabla" value="1" min="1" onkeydown="return false;" /></td> <!-- Cantidad -->
+            <td class="precio-unitario">${articulo.Precio.toFixed(2)}</td> <!-- Precio Unitario -->
+            <td class="precio-total">${articulo.Precio.toFixed(2)}</td> <!-- Precio Total inicial -->
+            <td><button class="btn-borrar">Borrar</button></td> <!-- Botón de Borrar -->
+        `;
+
+        // Añadir el evento 'input' al input de cantidad para actualizar el precio total
+        var cantidadInput = row.querySelector('.inputTabla');
+        cantidadInput.addEventListener('input', function () {
+            // Obtener la cantidad y el precio unitario
+            var cantidad = parseFloat(cantidadInput.value);
+            var precioUnitario = parseFloat(row.querySelector('.precio-unitario').textContent);
+
+            // Calcular el precio total
+            var precioTotal = cantidad * precioUnitario;
+
+            // Actualizar el precio total en la tabla
+            row.querySelector('.precio-total').textContent = precioTotal.toFixed(2);
+        });
+
+        // Añadir el evento 'click' al botón de borrar
+        var borrarBoton = row.querySelector('.btn-borrar');
+        borrarBoton.addEventListener('click', function () {
+            // Reintegrar el artículo a la lista de productos
+            articulosJ.push(articulo); // Agregar el artículo de nuevo a la lista de productos
+            llenarTablaTodosLosProductos(); // Actualiza la tabla de todos los productos
+            tableBodySeleccionados.removeChild(row); // Eliminar la fila de la tabla de artículos seleccionados
+        });
+
+        tableBodySeleccionados.appendChild(row); // Agregar la fila a la tabla de artículos seleccionados
+    }
+</script>
+
+        
