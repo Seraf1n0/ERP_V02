@@ -206,7 +206,7 @@
             </div>
             <div>
 
-                <textarea id="descripcion" name="descripcion" rows="5" cols="50"></textarea>
+                <textarea id="descripcion" name="descripcion" asp-for="descripcion" rows="5" cols="50"></textarea>
             </div>
 
             <!--Parte de añadir productos y las líneas de la factura-->
@@ -236,8 +236,8 @@
             </div>
 
         </div>
-                
-           
+        <!--Se supone que aquí de forma oculta almacenaría los datos-->
+        
 
     </form>
 </div>
@@ -410,6 +410,8 @@
 
         tableBodySeleccionados.appendChild(row); // Agregar la fila a la tabla de artículos seleccionados
     }
+
+    
 </script>
 
         
