@@ -168,7 +168,7 @@
 <div class="contenedorPrincipal">
     <h1>Crear Cotización</h1>
     <div class="linea"></div>
-    <form method="POST">
+    <form method="POST" asp-page="CrearCotizacionModel">
         <div class="seleccionCliente">
             <!--Detalles de la cotización. Todo lo que vaya en una misma línea
                 va en un div por separado para que el estilo lo acomode
@@ -236,9 +236,9 @@
             </div>
 
         </div>
-        <!--Se supone que aquí de forma oculta almacenaría los datos-->
-        
+        <input type="hidden" id="compras" name="compras" asp-for="textoInputOculto"/>
 
+        <button type="submit">Enviar Cotización</button>
     </form>
 </div>
 
@@ -409,9 +409,31 @@
         });
 
         tableBodySeleccionados.appendChild(row); // Agregar la fila a la tabla de artículos seleccionados
+        actualizarArticulosSeleccionados();
     }
 
-    
+    function actualizarArticulosSeleccionados() {
+        const tbody = document.querySelector('#tablaArticulosSeleccionados tbody');
+        const articulosSeleccionados = {};
+        let stringArt = '';
+        tbody.querySelectorAll('tr').forEach(row => {
+            const codigo = row.children[0].innerText; // Obtener el código del producto
+            const cantidad = row.children[3].querySelector('input').value; // Obtener la cantidad
+            articulosSeleccionados[codigo] = cantidad; // Almacenar en el objeto
+            stringArt += `${codigo};${cantidad};`;
+        });
+
+        // Asignar el valor JSON al input oculto
+        const comprasInput = document.getElementById('compras');
+        comprasInput.value = stringArt; // Actualiza el campo oculto
+
+        // Imprimir el valor del input 'compras' en la consola antes de y después de la asignación
+        console.log("Valor asignado a compras:", comprasInput.value); // Imprime el valor asignado
+
+        // Obtener nuevamente el valor del input para verificar que se actualizó
+        const valorActualizado = comprasInput.value;
+        console.log("Valor actualizado de compras:", valorActualizado);
+    }
 </script>
 
         

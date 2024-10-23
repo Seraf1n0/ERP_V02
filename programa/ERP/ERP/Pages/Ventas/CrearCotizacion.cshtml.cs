@@ -20,13 +20,15 @@ namespace ERP.Pages.Ventas
         [BindProperty]
         public string descripcion { get; set; }
         public DateTime fechaHoy = DateTime.Now;
-        public Dictionary<int, string> probabilidades;
-        public Dictionary<string, string> nombresCliente;
-        public Dictionary<string, string> zonasCliente;
-        public Dictionary<string, string> sectoresCliente;
-        public BaseDeDatos baseDeDatos;
-        public List<Articulo> articulos;
-        public Dictionary<string, string> articulosSeleccionados;
+        public Dictionary<int, string> probabilidades = new Dictionary<int, string>();
+        public Dictionary<string, string> nombresCliente = new Dictionary<string, string>();
+        public Dictionary<string, string> zonasCliente = new Dictionary<string, string>();
+        public Dictionary<string, string> sectoresCliente = new Dictionary<string, string>();
+        public BaseDeDatos baseDeDatos = new BaseDeDatos();
+        public List<Articulo> articulos = new List<Articulo>();
+        public Dictionary<string, string> articulosSeleccionados = new Dictionary<string, string>();
+        [BindProperty]
+        public string textoInputOculto { get; set; } = "";
         public void OnGet()
         {
             //Atributos de la clase
@@ -40,7 +42,7 @@ namespace ERP.Pages.Ventas
             articulos = new List<Articulo>();
             descripcion = "";
             articulosSeleccionados = new Dictionary<string, string>();
-
+            textoInputOculto = "";
             //Consultas para llenar los combobox, tablas y campos de texto
             obtenerProbabilidad();
             obtenerDatosDeClientes();
@@ -50,23 +52,10 @@ namespace ERP.Pages.Ventas
             sectorCliente = sectoresCliente.Values.First();
         }
 
-        public void OnPost(string listaArticulos)
+        public void OnPost()
         {
-            if (!string.IsNullOrEmpty(listaArticulos))
-            {
-                // Deserializar el string JSON en un diccionario
-                articulosSeleccionados = JsonSerializer.Deserialize<Dictionary<string, string>>(listaArticulos);
-
-                // Ahora puedes trabajar con el diccionario, por ejemplo, guardarlo en la base de datos
-                foreach (var articulo in articulosSeleccionados)
-                {
-                    string codigo = articulo.Key;
-                    string cantidad = articulo.Value;
-
-                    // Aquí puedes hacer lo que necesites, como imprimir los resultados en la consola
-                    Console.WriteLine($"Código: {codigo}, Cantidad: {cantidad}");
-                }
-            }
+            string valorRecibido = Request.Form["compras"]; // Este es el valor enviado desde el frontend
+            string a = "";
         }
 
         private void obtenerProbabilidad()
