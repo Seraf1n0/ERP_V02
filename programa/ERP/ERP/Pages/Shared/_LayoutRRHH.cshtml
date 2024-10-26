@@ -27,7 +27,7 @@
 
         
         <div class="sidebar">
-
+            
             <div class="logo">
                 <i class='bx bx-menu menu-icon'></i>
                 <span class=" " logo-name">Rercursos Humanos</span>
@@ -85,13 +85,19 @@
 
                         </a>
                     </li>
-
-                    <li class="list">
-                        <a href="\Ventas/CrearCotizacion" class="nav-link">
-                            <i class='bx bx-spreadsheet icon'></i>
-                            <span class="link">Crear Cotización</span>
-                        </a>
-                    </li>
+                    
+                    @if (ViewData["IsAdmin"] != null && (bool)ViewData["IsAdmin"])
+                    {
+                        <li class="list">
+                            <a href="\Ventas/CrearCotizacion" class="nav-link">
+                                <i class='bx bx-spreadsheet icon'></i>
+                                <span class="link">Crear Cotización</span>
+                            </a>
+                        </li>
+                    }else{
+                        <p>adasd</p>
+                    }
+                    
                     
                 </ul>
                 <div class="bottom-content">
@@ -130,6 +136,8 @@
         overlay.addEventListener("click", () => {
             navBar.classList.remove("open")
         })
+
+            
 
     </script>
     <!--Para el combobox que filtra-->
