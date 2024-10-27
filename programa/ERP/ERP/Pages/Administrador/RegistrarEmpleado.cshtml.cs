@@ -5,16 +5,20 @@ using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
-
+using System.IO;
+using System;
+using System.Reflection.PortableExecutable;
+using System.Security.Cryptography;
+using System.Text;
 namespace ERP.Pages.Administrador
 {
     public class RegistrarEmpleadoModel : PageModel
     {
         public DateTime fechaHoy = DateTime.Now;
-
+        private string rutaArchivo = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "c", "c.txt");
         public Direccion direccion = new Direccion();
         public BaseDeDatos baseDeDatos = new BaseDeDatos();
-
+        public bool errorCedula = true;
         //Listas para los puestos
         public List<string> puestosRRHH = new List<string>();
         public List<string> puestosVentas = new List<string>();
@@ -52,6 +56,13 @@ namespace ERP.Pages.Administrador
             string departamento = Request.Form["departamentos"];
             string puesto = Request.Form["puestos"];
             string salario = Request.Form["salario"];
+            string permisosEdicion = Request.Form["permisosEdicion"];
+            string permisosVisualizacion = Request.Form["permisosVisualizacion"];
+            string permisosReportes = Request.Form["permisosReportes"];
+            //Para almacenar los permisos
+            string[] listaEdicion = permisosEdicion.Split(";");
+            string[] listaVisualizacion = permisosVisualizacion.Split(";");
+            string[] listaReportes = permisosReportes.Split(";");
 
             float salarioF = float.Parse(salario);
             //Insertando el usuario
@@ -77,8 +88,8 @@ namespace ERP.Pages.Administrador
                         cmd.Parameters.AddWithValue("@seniaExacta", seniasExactas);
                         cmd.Parameters.AddWithValue("@fechaNacimiento", fecha);
                         cmd.Parameters.AddWithValue("@salario", salarioF);
-                        cmd.Parameters.AddWithValue("@usuario", cedula);
-                        cmd.Parameters.AddWithValue("@contrasenia", cedula);
+                        cmd.Parameters.AddWithValue("@usuario", cifrar(cedula));
+                        cmd.Parameters.AddWithValue("@contrasenia", cifrar(cedula));
                         //Para recibir el error
                         SqlParameter parametroError = new SqlParameter("@error", SqlDbType.VarChar, 50)
                         {
@@ -92,15 +103,107 @@ namespace ERP.Pages.Administrador
                         //Aquí tengo el parámetro de error
                         string mensajeError = parametroError.Value.ToString();
                         Console.WriteLine(mensajeError);
+                        conexion.Close();
+                        if(mensajeError != "Error")
+                        {
+                            errorCedula = true;
+
+                            //Primero tendría que insertar el nombre del rol
+                            using (SqlConnection conexionNombreRol = new SqlConnection(baseDeDatos.stringConexion)) 
+                            {
+                                conexionNombreRol.Open();
+                                using (SqlCommand cmdNombreRol = new SqlCommand("InsertarRol", conexionNombreRol))
+                                {
+                                    cmdNombreRol.CommandType = CommandType.StoredProcedure;
+                                    cmdNombreRol.Parameters.AddWithValue("@nombre", cedula);
+                                    SqlParameter errorNombre= new SqlParameter("@error", SqlDbType.VarChar, 50)
+                                    {
+                                        Direction = ParameterDirection.Output
+                                    };
+                                    cmdNombreRol.Parameters.Add(errorNombre);
+                                    cmdNombreRol.ExecuteNonQuery();
+                                }
+                                conexionNombreRol.Close();
+
+                            }
+
+                            //Aquí tendría que insertar los permisos
+                            using (SqlConnection connection = new SqlConnection(baseDeDatos.stringConexion))
+                            {
+                                connection.Open();
+                                //Tengo que hacerlo para edición, visualización y reportes
+                                foreach(string textoEdicion in listaEdicion)
+                                {
+                                    using (SqlCommand command = new SqlCommand("InsertarPermisoModuloRol", connection))
+                                    {
+                                        command.CommandType = CommandType.StoredProcedure;
+                                        command.Parameters.AddWithValue("@nombreRol", cedula);
+                                        command.Parameters.AddWithValue("@nombreModulo", textoEdicion);
+                                        command.Parameters.AddWithValue("@tipoPermiso", 1);
+                                        SqlParameter errorEdicion = new SqlParameter("@error", SqlDbType.VarChar, 50)
+                                        {
+                                            Direction = ParameterDirection.Output
+                                        };
+                                        command.Parameters.Add(errorEdicion);
+                                        // Ejecutar el procedimiento almacenado
+                                        command.ExecuteNonQuery();
+                                    }
+                                }
+
+                                //visualización 
+                                foreach (string textoVisualizacion in listaVisualizacion)
+                                {
+                                    using (SqlCommand command = new SqlCommand("InsertarPermisoModuloRol", connection))
+                                    {
+                                        command.CommandType = CommandType.StoredProcedure;
+                                        command.Parameters.AddWithValue("@nombreRol", cedula);
+                                        command.Parameters.AddWithValue("@nombreModulo", textoVisualizacion);
+                                        command.Parameters.AddWithValue("@tipoPermiso", 2);
+                                        SqlParameter errorVisualizacion = new SqlParameter("@error", SqlDbType.VarChar, 50)
+                                        {
+                                            Direction = ParameterDirection.Output
+                                        };
+                                        command.Parameters.Add(errorVisualizacion);
+                                        // Ejecutar el procedimiento almacenado
+                                        command.ExecuteNonQuery();
+                                    }
+                                }
+
+                                //reportes 
+                                foreach (string textoReportes in listaReportes)
+                                {
+                                    using (SqlCommand command = new SqlCommand("InsertarPermisoModuloRol", connection))
+                                    {
+                                        command.CommandType = CommandType.StoredProcedure;
+                                        command.Parameters.AddWithValue("@nombreRol", cedula);
+                                        command.Parameters.AddWithValue("@nombreModulo", textoReportes);
+                                        command.Parameters.AddWithValue("@tipoPermiso", 3);
+                                        SqlParameter errorReportes = new SqlParameter("@error", SqlDbType.VarChar, 50)
+                                        {
+                                            Direction = ParameterDirection.Output
+                                        };
+                                        command.Parameters.Add(errorReportes);
+                                        // Ejecutar el procedimiento almacenado
+                                        command.ExecuteNonQuery();
+                                        
+                                        
+                                    }
+                                }
+                                connection.Close();
+                            }
+
+
+                        }
+                        
                     }
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex) {  }
+            //Ahora tendría que insertar los permisos
 
-            string valorRecibido = Request.Form["permisosEdicion"]; // Este es el valor enviado desde el frontend
-            string valorRecibidoB = Request.Form["permisosVisualizacion"]; // Este es el valor enviado desde el frontend
-            string valorRecibidoC = Request.Form["permisosReportes"]; // Este es el valor enviado desde el frontend
-            string a = "";
+
+    
+            
         }
 
         public void consultaPuestos()
@@ -113,7 +216,7 @@ namespace ERP.Pages.Administrador
                 {
                     conexion.Open();
                     SqlCommand cmd = conexion.CreateCommand();
-                    cmd.CommandText = "select nombre from RRHH.Puesto where nombreD_Departamento = 'RRHH'";
+                    cmd.CommandText = "select nombre from RRHH.Puesto where nombreD_Departamento = 'Recursos Humanos'";
                     var reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
@@ -151,7 +254,7 @@ namespace ERP.Pages.Administrador
                 {
                     conexion.Open();
                     SqlCommand cmd = conexion.CreateCommand();
-                    cmd.CommandText = "select nombre from RRHH.Puesto where nombreD_Departamento = 'Produccion'";
+                    cmd.CommandText = "select nombre from RRHH.Puesto where nombreD_Departamento = 'Producción'";
                     var reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
@@ -181,6 +284,61 @@ namespace ERP.Pages.Administrador
                 }
             }
             catch (Exception ex) { }
+        }
+
+        public string cifrar(string texto)
+        {
+            string clave = "";
+            string linea;
+            try
+            {
+                using (StreamReader sr = new StreamReader(rutaArchivo))
+                {
+                    while ((linea = sr.ReadLine()) != null)
+                    {
+                        clave = linea;
+                    }
+
+                }
+
+                
+            }
+            catch (Exception ex) { return ""; }
+
+
+            //Ahora tendrìa que cifrar el texto
+            byte[] iv;
+            byte[] encrypted;
+
+            // Generar un nuevo vector de inicialización
+            using (Aes aesAlg = Aes.Create())
+            {
+                aesAlg.Key = Encoding.UTF8.GetBytes(clave); // Convertir la clave a bytes
+                aesAlg.GenerateIV(); // Generar IV
+
+                iv = aesAlg.IV;
+
+                // Crear un cifrador
+                ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+
+                using (MemoryStream msEncrypt = new MemoryStream())
+                {
+                    // Escribir el IV al inicio del flujo
+                    msEncrypt.Write(iv, 0, iv.Length);
+
+                    using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+                    {
+                        using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
+                        {
+                            swEncrypt.Write(texto);
+                        }
+                        encrypted = msEncrypt.ToArray();
+                    }
+                }
+            }
+
+            // Devolver el texto cifrado como cadena Base64
+            return Convert.ToBase64String(encrypted);
         }
     }
 }

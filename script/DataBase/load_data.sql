@@ -27,6 +27,7 @@ INSERT INTO RRHH.Modulo (nombreModulo, activo) VALUES
 ('Historico de Salarios', 1),
 ('Facturación', 1),
 ('Inventario', 1),
+('Cotizaciones',1),
 ('Entradas de Inventario', 1),
 ('Salidas de Inventario', 1),
 ('Movimientos de Inventarios', 1),

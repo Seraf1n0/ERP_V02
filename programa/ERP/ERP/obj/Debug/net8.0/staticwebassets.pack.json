@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\ERP.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\wwwroot\\c\\c.txt",
+      "PackagePath": "staticwebassets\\c\\c.txt"
+    },
+    {
       "Id": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\wwwroot\\css\\estilo_LayoutVentas.css",
       "PackagePath": "staticwebassets\\css\\estilo_LayoutVentas.css"
     },

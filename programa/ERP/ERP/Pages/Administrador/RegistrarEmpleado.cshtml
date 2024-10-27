@@ -162,7 +162,13 @@
     }
 
 </style>
+
+
+
 <div class="container">
+
+    
+
     <form method="POST" id="registroUsuario">
         <h1>Agregar Empleado</h1>
         <h2>Datos Personales</h2>
@@ -405,7 +411,12 @@
 
         <button onclick="verificarVisualizar()">Verificar Checkboxes de Visualizar</button>
     </form>
-
+    @if (Model.errorCedula)
+    {
+        <div class="error-message">
+            Por favor, ingresa un nombre.
+        </div>
+    }
     
 </div>
 
@@ -436,6 +447,7 @@
             });
         } else {
             // Aquí puedes proceder a enviar el formulario si hay al menos un checkbox seleccionado
+            verificarVisualizar();
             this.submit(); // Esta línea envía el formulario
         }
     });
