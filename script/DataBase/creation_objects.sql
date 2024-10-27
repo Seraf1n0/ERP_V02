@@ -158,9 +158,7 @@ CREATE TABLE RRHH.Usuario (
 	fechaRegistro DATE NOT NULL,
 	fechaNacimiento DATE NOT NULL, 
 	salarioActual FLOAT NOT NULL,
-	tipoCedula INT NOT NULL,
 	activo BIT,
-	FOREIGN KEY (tipoCedula) REFERENCES Ventas.TipoCedula(ID),
 	FOREIGN KEY (genero) REFERENCES Ventas.Genero(ID),
 
 	-- CREDENCIALES 

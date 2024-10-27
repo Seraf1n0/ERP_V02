@@ -66,8 +66,40 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Produccion/DetalleEntrada.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjY2lvblxEZXRhbGxlRW50cmFkYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Produccion/DetalleMovimiento.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjY2lvblxEZXRhbGxlTW92aW1pZW50by5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Produccion/DetalleSalida.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjY2lvblxEZXRhbGxlU2FsaWRhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Produccion/PaginaEntrada.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjY2lvblxQYWdpbmFFbnRyYWRhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Produccion/PaginaMovimientos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjY2lvblxQYWdpbmFNb3ZpbWllbnRvcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Produccion/PaginaPrincipalProduccion.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjY2lvblxQYWdpbmFQcmluY2lwYWxQcm9kdWNjaW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Produccion/PaginaSalidas.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjY2lvblxQYWdpbmFTYWxpZGFzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Produccion/RegistrarEntrada.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjY2lvblxSZWdpc3RyYXJFbnRyYWRhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/Produccion/RegistrarMovimiento.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjY2lvblxSZWdpc3RyYXJNb3ZpbWllbnRvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Dylan/Documents/ERP_V02/programa/ERP/ERP/Pages/RRHH/Clientes.cshtml]

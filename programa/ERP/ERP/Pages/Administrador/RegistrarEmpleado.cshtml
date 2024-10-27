@@ -120,11 +120,6 @@
         margin: 0 auto; /* Centra el botón */
     }
 
-    .text_danger {
-        color: red;
-        font-size: 12px; /* Ajusta el tamaño del texto del error */
-
-    }
 
     .input-container {
         display: flex;
@@ -141,6 +136,11 @@
         display: flex;
         gap: 20px; /* Espacio entre los elementos */
        
+    }
+
+    .correo{
+        display: flex;
+        gap: 20px; /* Espacio entre los elementos */
     }
 
     .input-group {
@@ -163,27 +163,25 @@
 
 </style>
 <div class="container">
-    <form method="POST">
+    <form method="POST" id="registroUsuario">
         <h1>Agregar Empleado</h1>
         <h2>Datos Personales</h2>
         <div class="input-container">
             <div>
-            <input type="text" id="primerNombre" asp-for="primerNombre"  value="@Model.primerNombre" placeholder="Primer Nombre"/>
-            <span asp-validation-for="primerNombre" class="text_danger"></span>
+                <input type="text" id="primerNombre" name="primerNombre" placeholder="Primer Nombre" required />
             </div>
 
             <div>
-            <input type="text" id="segundoNombre" asp-for="segundoNombre"  value="@Model.segundoNombre" placeholder="Segundo Nombre">
-            <span asp-validation-for="segundoNombre" class="text_danger"></span>
+                <input type="text" id="segundoNombre" name="segundoNombre" placeholder="Segundo Nombre">
             </div>
 
             <div>
-            <input type="text" id="primerApellido" asp-for="primerApellido"  value="@Model.primerApellido" placeholder="Primer Apellido">
-            <span asp-validation-for="primerApellido" class="text_danger"></span>
+                <input type="text" id="primerApellido" name="primerApellido" placeholder="Primer Apellido" required>
+            
             </div>
             <div>
-            <input type="text" id="segundoApellido" asp-for="segundoApellido"  value="@Model.segundoApellido" placeholder="Segundo Apellido">
-            <span asp-validation-for="segundoApellido" class="text_danger"></span>
+                <input type="text" id="segundoApellido" name="segundoApellido" placeholder="Segundo Apellido" required>
+            
             </div>
 
         </div>
@@ -195,8 +193,10 @@
             <div class="input-group">
                 <label for="generos">Género</label>
                 <select id="generos" name="generos">
-                    <option value="Masculino">Masculino</option>
-                    <option value="Femenino">Femenino</option>
+                    @foreach (var genero in Model.generos)
+                    {
+                        <option value="@genero.Value">@genero.Value</option>
+                    }
                 </select>
             </div>
 
@@ -207,13 +207,19 @@
 
             <div class="input-group">
                 <label for="cedula">Cédula</label>
-                <input type="text" id="cedula" asp-for="cedula" value="@Model.cedula" placeholder="Número de Cédula">
-                <span asp-validation-for="cedula" class="text_danger"></span>
+                <input type="text" id="cedula" name="cedula" placeholder="Número de Cédula" required minlength="9" pattern="\d{9}" title="Debe contener exactamente 9 dígitos" maxlength="9"
+                       oninput="this.value = this.value.replace(/\D/g, '')">>
+                
             </div>
         </div>
         <br> <br />
        
-        
+        <div class="correo">
+            <div>
+            <label for="correo">Correo Electrónico:</label>
+            <input type="email" id="correo" name="correo" required>
+            </div>
+        </div>
 
         <!--Combobox para la dirección-->
         <h2>Dirección</h2>
@@ -255,7 +261,7 @@
 
         <br> <br />
         <!--Señas exactas-->
-        <textarea class="campoGrande" placeholder="Señas Exactas"></textarea>
+        <textarea class="campoGrande" id="seniasExactas" name="seniasExactas" placeholder="Señas Exactas"></textarea>
 
         <!--Departamento y puesto-->
         <h2>Datos Laborales</h2>
@@ -283,8 +289,8 @@
 
             <div class="input-group">
                 <label for="salario">Salario</label>
-                <input type="text" id="salario" asp-for="salario" value="@Model.salario" placeholder="Salario">
-                <span asp-validation-for="salario" class="text_danger"></span>
+                <input type="number" id="salario" name="salario" placeholder="Salario" required min="1" step="0.0001">
+                
             </div>
         </div>
 
@@ -368,6 +374,19 @@
                                 <td><input type="checkbox" name="movimientosDeInventarioVisualizar"></td>
                                 <td><input type="checkbox" name="movimientosDeInventarioReportes"></td>
                             </tr>
+
+                            <tr>
+                                <td>Casos</td>
+                                <td><input type="checkbox" name="casosCrear"></td>
+                                <td><input type="checkbox" name="casosVisualizar"></td>
+                                
+                            </tr>
+                            <tr>
+                                <td>Tareas</td>
+                                <td><input type="checkbox" name="tareasCrear"></td>
+                                <td><input type="checkbox" name="tareasVisualizar"></td>
+               
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -378,10 +397,108 @@
         <!--Botón para registrar-->
         <br> <br />
         <input class="Boton" type="submit" name="Registar" value="Registrar Empleado" />
+
+        <!--Hacer inputs ocultos que me manden los permisos seleccionados-->
+        <input type="hidden" id="permisosEdicion" name="permisosEdicion" />
+        <input type="hidden" id="permisosVisualizacion" name="permisosVisualizacion" />
+        <input type="hidden" id="permisosReportes" name="permisosReportes"/>
+
+        <button onclick="verificarVisualizar()">Verificar Checkboxes de Visualizar</button>
     </form>
 
     
 </div>
+
+<script>
+    document.getElementById('registroUsuario').addEventListener('submit', function (event) {
+        // Prevenir el envío del formulario inicialmente
+        event.preventDefault();
+
+        // Obtener todos los checkboxes de la tabla
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        let checked = false;
+
+        // Iterar sobre los checkboxes para ver si al menos uno está seleccionado
+        checkboxes.forEach((checkbox) => {
+            if (checkbox.checked) {
+                checked = true;
+            }
+        });
+
+        // Verificar si al menos un checkbox está seleccionado
+        if (!checked) {
+            // Usar SweetAlert para mostrar una alerta estilizada
+            swal({
+                title: "¡Atención!",
+                text: "Por favor, seleccione al menos un permiso.",
+                icon: "warning",
+                button: "Aceptar",
+            });
+        } else {
+            // Aquí puedes proceder a enviar el formulario si hay al menos un checkbox seleccionado
+            this.submit(); // Esta línea envía el formulario
+        }
+    });
+</script>
+
+<script>
+    function verificarVisualizar() {
+        //Con esta función voy a recorrer toda la tabla y llenar inputs ocultos con los permisos que se asignen
+        checkboxesEdicion = document.querySelectorAll(".table tbody tr td:nth-child(2) input[type='checkbox']"); //Primero el de edición
+        let cadenaPermisosEdicion = '';
+        checkboxesEdicion.forEach((checkbox) => {
+            // Obtiene la fila del checkbox
+            fila = checkbox.closest("tr");
+            modulo = fila.querySelector("td").innerText.trim(); //Nombre del módulo
+            // Verificando si el checkbox está marcado para meter el nombre del módulo en la cadena
+            if (checkbox.checked){
+                cadenaPermisosEdicion += `${modulo};`;
+            }
+        });
+        cadenaPermisosEdicion = cadenaPermisosEdicion.slice(0, -1); //Para quitar el ultimo ;
+        console.log(cadenaPermisosEdicion)
+
+
+        //Ahora para los de visualización
+        checkboxesVisualizacion = document.querySelectorAll(".table tbody tr td:nth-child(3) input[type='checkbox']");
+        let cadenaPermisosVisualizacion = '';
+        checkboxesVisualizacion.forEach((checkbox) => {
+            
+            fila = checkbox.closest("tr");
+            modulo = fila.querySelector("td").innerText.trim();
+            if (checkbox.checked) {
+                cadenaPermisosVisualizacion += `${modulo};`;
+            }
+        });
+        cadenaPermisosVisualizacion = cadenaPermisosVisualizacion.slice(0, -1); //Para quitar el ultimo ;
+        console.log(cadenaPermisosVisualizacion)
+
+        //Iterar los de reportería
+        //Ahora para los de visualización
+        checkboxesReporteria = document.querySelectorAll(".table tbody tr td:nth-child(4) input[type='checkbox']");
+        let cadenaPermisosReporteria = '';
+        checkboxesReporteria.forEach((checkbox) => {
+
+            fila = checkbox.closest("tr");
+            modulo = fila.querySelector("td").innerText.trim();
+            if (checkbox.checked) {
+                cadenaPermisosReporteria += `${modulo};`;
+            }
+        });
+        cadenaPermisosReporteria = cadenaPermisosReporteria.slice(0, -1); //Para quitar el ultimo ;
+        console.log(cadenaPermisosReporteria)
+
+        //Actualizo los valores de los input ocultos
+        inputEdicion = document.getElementById('permisosEdicion');
+        inputEdicion.value = cadenaPermisosEdicion;
+
+        inputVisualizacion = document.getElementById('permisosVisualizacion');
+        inputVisualizacion.value = cadenaPermisosVisualizacion;
+
+        inputReportes = document.getElementById('permisosReportes');
+        inputReportes.value = cadenaPermisosReporteria;
+    }
+</script>
 
 <script>
     function actualizarPuestos() {
