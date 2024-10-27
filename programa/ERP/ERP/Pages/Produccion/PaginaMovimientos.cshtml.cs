@@ -7,7 +7,7 @@ namespace ERP.Pages.Produccion
 {
     public class PaginaMovimientosModel : PageModel
     {
-        //public List<Movimiento> = new List<Movimiento>();
+        public List<Movimiento> movimientos = new List<Movimiento>();
         public void OnGet()
         {
         }

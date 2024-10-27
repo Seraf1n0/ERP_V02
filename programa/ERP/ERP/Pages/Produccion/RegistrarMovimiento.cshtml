@@ -1,0 +1,232 @@
+﻿@page
+@model ERP.Pages.Produccion.RegistrarMovimientoModel
+@{
+    Layout = "_LayoutProduccion";
+}
+
+
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        box-shadow: 8px 8px 0px #bdbdbdbf;
+        width: 80%;
+        background-color: #ffffff;
+        border-radius: 30px;
+        padding: 20px;
+    }
+
+    .table_header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 30px 0;
+    }
+
+    .BotonCrearNuevo, .BotonEliminar, .BotonAgregarProducto, .BotonRegistrar {
+        outline: none;
+        border: none;
+        background-color: #13232f;
+        color: #ffffff;
+        padding: 10px 30px;
+        border-radius: 20px;
+        font-size: 14px;
+        cursor: pointer;
+        margin: 5px;
+    }
+
+        .BotonCrearNuevo:hover, .BotonEliminar:hover, .BotonAgregarProducto:hover, .BotonRegistrar:hover {
+            background-color: #13233f;
+        }
+
+    table {
+        border-spacing: 0;
+        margin-top: 1rem;
+        width: 100%;
+    }
+
+    thead {
+        background-color: #13232f;
+        color: white;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #dfdfdf;
+    }
+
+    .form_group {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+        .form_group label {
+            margin-right: 15px;
+        }
+
+        .form_group select, .form_group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #dfdfdf;
+            border-radius: 10px;
+        }
+
+    .actions {
+        display: flex;
+        justify-content: flex-end;
+        margin: 1rem 2rem;
+    }
+</style>
+
+<div class="container">
+    <h1>Registrar Movimiento</h1>
+
+    <!-- Selección del responsable (usuario) -->
+    <div class="form_group">
+        <label for="responsable">Responsable:</label>
+        <select id="responsable" class="form-control">
+            <option value="">Seleccione un responsable</option>
+            <!-- Opciones vacías por ahora -->
+        </select>
+    </div>
+
+    <!-- Selección de la bodega de origen -->
+    <div class="form_group">
+        <label for="bodegaOrigen">Bodega de origen:</label>
+        <select id="bodegaOrigen" class="form-control">
+            <option value="">Seleccione una bodega de origen</option>
+            <!-- Opciones vacías por ahora -->
+        </select>
+    </div>
+
+    <!-- Selección de la bodega de destino -->
+    <div class="form_group">
+        <label for="bodegaDestino">Bodega de destino:</label>
+        <select id="bodegaDestino" class="form-control">
+            <option value="">Seleccione una bodega de destino</option>
+            <!-- Opciones vacías por ahora -->
+        </select>
+    </div>
+
+    <!-- Fecha y hora del movimiento -->
+    <div class="form_group">
+        <label for="fechaHora">Fecha y hora del movimiento:</label>
+        <input type="datetime-local" id="fechaHora" name="fechaHora" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
+    </div>
+
+    <form method="post" asp-page-handler="mostrarModal">
+        <button type="submit" class="BotonAgregarProducto">Agregar producto</button>
+    </form>
+
+    <!-- Tabla para mostrar los productos movidos -->
+    <div class="table_header">
+        <h2>Productos en movimiento</h2>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio unitario</th>
+                <th>Precio total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Aquí se generarán dinámicamente las filas con los productos agregados -->
+        </tbody>
+    </table>
+
+    <!-- Botón para registrar el movimiento -->
+    <div class="actions">
+        <button class="BotonRegistrar">Registrar movimiento</button>
+    </div>
+</div>
+
+@if (Model.mostrarModal)
+{
+    <!-- Modal -->
+    <div class="modal" tabindex="-1" style="display:block; background-color:rgba(0,0,0,0.5); position:fixed; top:0; left:0; width:100%; height:100%; display:flex; justify-content:center; align-items:center;">
+        <div class="modal-dialog" style="background:white; padding:20px; border-radius:10px; width:80%; max-width:600px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Seleccionar Producto</h5>
+                    <button type="button" class="close" aria-label="Close" onclick="cerrarModal()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Familia</th>
+                                <th>Precio Unitario</th>
+                                <th>Marca</th>
+                                <th>Cantidad</th>
+                                <th>Agregar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var articulo in Model.articulosDisponibles)
+                            {
+                                <tr>
+                                    <td>@articulo.nombre</td>
+                                    <td>@articulo.familia</td>
+                                    <td>@articulo.precio</td>
+                                    <td>@articulo.marca</td>
+                                    <td>
+                                        <input type="number" id="cantidad_@articulo.codigo" value="1" min="1" class="form-control" style="width:70px;" />
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" onclick="agregarProducto('@articulo.nombre', @articulo.precio, @articulo.codigo)">Agregar</button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="cerrarModal()">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    function agregarProducto(nombre, precio, codigo) {
+        const cantidad = parseInt(document.getElementById('cantidad_' + codigo).value);
+        if (isNaN(cantidad) || cantidad <= 0) {
+            alert("Por favor, seleccione una cantidad válida.");
+            return;
+        }
+
+        const precioTotal = cantidad * precio;
+
+        const tabla = document.querySelector(".container table tbody");
+        const fila = document.createElement("tr");
+        fila.innerHTML = `
+                <td>${nombre}</td>
+                <td>${cantidad}</td>
+                <td>${precio.toFixed(2)}</td>
+                <td>${precioTotal.toFixed(2)}</td>
+            `;
+
+        tabla.appendChild(fila);
+        cerrarModal();
+    }
+
+    function cerrarModal() {
+        document.querySelector('.modal').style.display = 'none';
+    }
+</script>

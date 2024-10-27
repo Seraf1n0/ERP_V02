@@ -1,5 +1,5 @@
 ﻿@page
-@model ERP.Pages.Produccion.PaginaSalidasModel
+@model ERP.Pages.Produccion.DetalleEntradaModel
 @{
     Layout = "_LayoutProduccion";
 }
@@ -89,25 +89,19 @@
     }
 </style>
 
-
 <div class="container">
     <div class="table_header">
-        <h2>Salidas</h2>
-        <!-- Botones para acciones depende del seleccionado -->
-        <button class="BotonEliminar">Eliminar</button>
+        <h2>Detalle de entrada</h2>
     </div>
 
     <table>
         <thead>
             <tr>
                 <!--Headers de la tabla-->
-                <th>ID Salida</th>
-                <th>Fecha y hora de operación</th>
-                <th>Cedula del responsable</th>
-                <th>Nombre del responsable</th>
-                <th>Cantidad total de productos</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio unitario</th>
                 <th>Precio total</th>
-                <th> Detalles </th>
 
             </tr>
         </thead>
