@@ -142,6 +142,7 @@ CREATE TABLE RRHH.PermisoModuloRol(  -- Tabla intermedia entre tablas intermedia
     FOREIGN KEY (tipoPermiso) REFERENCES RRHH.Permisos(ID)
 );
 
+
 CREATE TABLE RRHH.Usuario (
 	cedula VARCHAR (20) PRIMARY KEY NOT NULL,
 	nombrePuesto_Puesto VARCHAR (150),
@@ -158,14 +159,12 @@ CREATE TABLE RRHH.Usuario (
 	fechaRegistro DATE NOT NULL,
 	fechaNacimiento DATE NOT NULL, 
 	salarioActual FLOAT NOT NULL,
-	tipoCedula INT NOT NULL,
 	activo BIT,
-	FOREIGN KEY (tipoCedula) REFERENCES Ventas.TipoCedula(ID),
 	FOREIGN KEY (genero) REFERENCES Ventas.Genero(ID),
 
 	-- CREDENCIALES 
-	usuario VARCHAR (15) NOT NULL,
-	contrasenia VARCHAR (15) NOT NULL,
+	usuario VARCHAR (100) NOT NULL,
+	contrasenia VARCHAR (100) NOT NULL,
 	FOREIGN KEY (nombrePuesto_Puesto) REFERENCES RRHH.Puesto(nombre),
 	CONSTRAINT AK_Usuario UNIQUE(usuario),
 

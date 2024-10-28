@@ -14,11 +14,12 @@
     <!-- Bootstrap Datepicker CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
     
-    
+    <!--Para mensajes-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
 
 </head>
 <body>
-    @RenderBody() 
+    
     <nav>
         <div class="logo">
             <i class='bx bx-menu menu-icon'></i>
@@ -27,7 +28,7 @@
 
         
         <div class="sidebar">
-
+            
             <div class="logo">
                 <i class='bx bx-menu menu-icon'></i>
                 <span class=" " logo-name">Rercursos Humanos</span>
@@ -85,13 +86,19 @@
 
                         </a>
                     </li>
-
-                    <li class="list">
-                        <a href="\Ventas/CrearCotizacion" class="nav-link">
-                            <i class='bx bx-spreadsheet icon'></i>
-                            <span class="link">Crear Cotización</span>
-                        </a>
-                    </li>
+                    
+                    @if (ViewData["IsAdmin"] != null && (bool)ViewData["IsAdmin"])
+                    {
+                        <li class="list">
+                            <a href="\Ventas/CrearCotizacion" class="nav-link">
+                                <i class='bx bx-spreadsheet icon'></i>
+                                <span class="link">Crear Cotización</span>
+                            </a>
+                        </li>
+                    }else{
+                        <p>adasd</p>
+                    }
+                    
                     
                 </ul>
                 <div class="bottom-content">
@@ -131,22 +138,28 @@
             navBar.classList.remove("open")
         })
 
+            
+
     </script>
+        <!-- Bootstrap -->
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+
     <!--Para el combobox que filtra-->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
         <!-- Bootstrap Datepicker JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     </section>
 
-    <!-- Bootstrap -->
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-
+    
+    @RenderBody()
     @await RenderSectionAsync("Scripts", required: false)
-
+    
 </body>
 </html>

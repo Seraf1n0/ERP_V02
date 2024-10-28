@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "DiZHCq3ccds9Ca6PKLVzfvbtG7qzDp+Kce+L6BmeNVk=",
+  "Hash": "H5twS7//PgmTcyNjqGRg0HPLNu/L6j7BQAj7Ow1Odno=",
   "Source": "ERP",
   "BasePath": "_content/ERP",
   "Mode": "Default",
@@ -53,6 +53,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ERP.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\wwwroot\\c\\c.txt",
+      "SourceId": "ERP",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\wwwroot\\",
+      "BasePath": "_content/ERP",
+      "RelativePath": "c/c.txt",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\c\\c.txt"
     },
     {
       "Identity": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\wwwroot\\css\\estilo_LayoutVentas.css",

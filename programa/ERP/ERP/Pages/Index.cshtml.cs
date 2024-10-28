@@ -5,7 +5,7 @@ namespace ERP.Pages
 {
     public class IndexModel : PageModel
     {
-
+        private string rutaArchivo = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "c", "c.txt");
         [BindProperty]
         public string Usuario { get; set; } = "";
 
@@ -20,8 +20,12 @@ namespace ERP.Pages
 
         public string Message { get; set; }
 
+        public bool errorInicioSesion = true;
+
+
         public IActionResult OnPost()
         {
+            //Tengo que obtener el usuario de la base de datos
             // Guardar el usuario en la sesión
             HttpContext.Session.SetString("Usuario", Usuario);
             if (Usuario == "V" | Usuario == "v")
@@ -41,15 +45,7 @@ namespace ERP.Pages
             {
                 return RedirectToPage("Produccion/PaginaPrincipalProduccion");
             }
-
-                
-
-
             // Redirigir a la página principal (por ejemplo, un dashboard)
-
-
-
-
         }
     }
 }

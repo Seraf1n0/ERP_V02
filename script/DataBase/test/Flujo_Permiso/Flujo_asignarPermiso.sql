@@ -22,6 +22,7 @@ INSERT INTO RRHH.Puesto (nombre, nombreD_Departamento, activo) VALUES
 
 -- Se insertan las entidades necesarias para la asignación de permisos
 INSERT INTO RRHH.Modulo (nombreModulo, activo) VALUES
+('Cotizaciones', 1),
 ('Empleados', 1),
 ('Planilla', 1),
 ('Clientes', 1),
@@ -29,6 +30,7 @@ INSERT INTO RRHH.Modulo (nombreModulo, activo) VALUES
 ('Historico de Salarios', 1),
 ('Facturación', 1),
 ('Inventario', 1),
+('Cotizaciones', 1),
 ('Entradas de Inventario', 1),
 ('Salidas de Inventario', 1),
 ('Movimientos de Inventarios', 1),
@@ -67,10 +69,12 @@ VALUES (
     'Cartago', 'La Unión', 'Tres Ríos', 'Calle los Almendros', GETDATE(), '1987-11-22', 950000, 1, 1, 'luism', 'pass789'
 );
 
+--Este identificador va a ser la propia cédula del usuario
 -- Roles, Se crean con un identificador para luego asignarlo a usuarios ya insertados:
 INSERT INTO RRHH.Rol (nombreRol) VALUES ('Administrador'), ('Vendedor'), ('Empleado'); -- Se les da un identificador para usar este mismo y asignarlo
 
 -- Asignamos roles a usuarios
+
 
 INSERT INTO RRHH.RolUsuario (cedulaUsuario_Usuario, nombreRol) -- Pa carlos
 VALUES ('123456789', 'Administrador');
