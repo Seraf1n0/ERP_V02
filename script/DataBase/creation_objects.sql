@@ -230,15 +230,14 @@ CREATE TABLE RRHH.HistoricoSalario (
 /*
 Creacion de tablas del schema Ventas
 */
-
 CREATE TABLE Ventas.Cliente (
 	cedula VARCHAR (20) PRIMARY KEY NOT NULL,
 	tipoCedula INT NOT NULL,
 	fax VARCHAR (20) NOT NULL,
-	primerNombre VARCHAR (20) NOT NULL, --Si fuera una empresa aquí se guardaría el nombre completo
-	segundoNombre VARCHAR (20) NULL,
-	primerApellido VARCHAR (20) NULL,
-	segundoApellido VARCHAR (20) NULL,
+	primerNombre VARCHAR (30) NOT NULL, --Si fuera una empresa aquí se guardaría el nombre completo
+	segundoNombre VARCHAR (30) NULL,
+	primerApellido VARCHAR (30) NULL,
+	segundoApellido VARCHAR (30) NULL,
 	email VARCHAR (50) NOT NULL,
 	provincia VARCHAR (20) NOT NULL,
 	canton VARCHAR (20) NOT NULL,
@@ -250,7 +249,6 @@ CREATE TABLE Ventas.Cliente (
 	FOREIGN KEY (tipoCedula) REFERENCES Ventas.TipoCedula(ID),
 	FOREIGN KEY (zona) REFERENCES Ventas.Zona(ID),
 	FOREIGN KEY (sector) REFERENCES Ventas.Sector(ID)
-
 );
 
 -- Tabla del multievaluado Telefonos
