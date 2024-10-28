@@ -1,0 +1,154 @@
+﻿@page
+@model ERP.Pages.Administrador.ZonasModel
+@{
+    Layout = "_LayoutAdministrador";
+}
+<style>
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        box-shadow: 8px 8px 0px #bdbdbdbf;
+        width: 80%;
+        background-color: #ffffff;
+        border-radius: 30px;
+    }
+
+        .container .table_header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px 0;
+        }
+
+    .BotonCrearNuevo {
+        outline: none;
+        border: none;
+        background-color: #13232f;
+        color: #ffffff;
+        padding: 10px 30px;
+        border-radius: 20px;
+        font-size: 14px;
+        cursor: pointer;
+        &:hover
+
+    {
+        background-color: #13233f;
+    }
+
+    }
+
+    select {
+        border: none;
+        border-bottom: 1px solid #c9c9c9;
+        width: 200px;
+        padding: 10px 0;
+        font-size: 16px;
+    }
+
+    .input_search {
+        position: relative;
+        input
+
+    {
+        border-radius: 30px;
+        width: 400px;
+        outline: none;
+        padding: 10px 20px;
+        border: 1px solid #c9c9c9;
+        box-sizing: border-box;
+        padding-right: 50px;
+        #search
+
+    {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        margin-right: 1rem;
+        transform: translate(-50%, -50%);
+    }
+
+    }
+    }
+
+    table {
+        border-spacing: 0;
+        margin-top: 1rem;
+        thead
+
+    {
+        background-color: #13232f;
+        color: white;
+        th
+
+    {
+        padding: 10px;
+    }
+
+    }
+
+    tbody {
+        tr
+
+    {
+        td
+
+    {
+        padding: 10px text-align: center;
+        border-bottom: 1px solid #dfdfdf;
+    }
+
+    }
+    }
+    }
+</style>
+<div class="container">
+    <div class="table_header">
+        <h2>Zonas</h2>
+        <button class="BotonCrearNuevo" onclick="abrirVentana('InsertarZonas')">Agregar Zona</button>
+        <select name="" id="">
+            <option value="" selected>Tipo</option>
+            <option value="">Tipo1</option>
+            <option value="">Tipo2</option>
+        </select>
+        <div class="input_search">
+            <input type="search" placeholder="Buscar" />
+            <i class='bx bx-search-alt-2'></i>
+        </div>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Zona</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var zona in Model.zonas)
+            {
+                <tr>
+                    <td>
+                        @zona
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+    <div class="table_fotter">
+        <p>Total de zonas : @Model.zonas.Count</p>
+    </div>
+</div>
+
+<script>
+    function abrirVentana(ventana) {
+
+        window.location.href = ventana;
+    }
+</script>

@@ -1,0 +1,97 @@
+﻿@page
+@model ERP.Pages.RRHH.PlanillaModel
+@{
+    Layout = "_LayoutRRHH";
+}
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 70vh;
+        margin-top: 80px;
+    }
+
+    form {
+        background: rgba(19, 35, 47,.9);
+        padding: 40px;
+        border-radius: 4px;
+        margin: 40px auto;
+        box-shadow: 0 4px 10px 4px rgba(19, 35, 47,.3);
+        max-width: 1200px;
+        width: 90%;
+    }
+
+    h1 {
+        color: #ffffff;
+        text-align: center;
+        margin: 0 0 40px;
+    }
+
+    h2 {
+        color: #ffffff;
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+
+    .Boton {
+        display: block;
+        border: 0;
+        outline: none;
+        border-radius: 0;
+        padding: 15px;
+        font-size: 2rem;
+        font-weight: 600;
+        letter-spacing: .1em;
+        background: #1ab188;
+        color: #ffffff;
+        transition: all.5s ease;
+        -webkit-appearance: none;
+        margin: 0 auto; 
+    }
+
+    .table input[type="text"] {
+        width: 100%; /* Ajusta el campo de texto al 100% del ancho disponible de la celda */
+        max-width: 150px; /* Define un ancho máximo para evitar que se desborde */
+        box-sizing: border-box; /* Asegura que el padding se respete dentro del ancho total */
+    }
+    .table {
+        table-layout: fixed; 
+        width: 100%; 
+    }
+
+        .table td {
+            padding: 8px; /* Ajusta el padding según lo que necesites */
+        }
+
+</style>
+<div class="container">
+    <form method="POST">
+        <h2>Planillas</h2>
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Cédula</th>
+                            <th scope="col">Nombre Completo</th>
+                            <th scope="col">Puesto</th>
+                            <th scope="col">Departamento</th>
+                            <th scope="col">Cantidad de horas jornada regular</th>
+                            <th scope="col">Cantidad de horas extras</th>
+                        </tr>
+                    </thead>
+                    
+                </table>
+            </div>
+        </div>
+
+        <!--Botón para registrar-->
+        <br> <br />
+        <input class="Boton" type="submit" name="Registar" value="Registrar Planilla" />
+    </form>
+
+
+</div>
+

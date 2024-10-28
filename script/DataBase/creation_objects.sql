@@ -103,13 +103,13 @@ CREATE TABLE RRHH.Rol (
 );
 
 CREATE TABLE RRHH.Modulo ( -- Tabla catalogo con los modulos principales del ERP
-	nombreModulo VARCHAR (20) PRIMARY KEY,
+	nombreModulo VARCHAR (60) PRIMARY KEY,
 	activo BIT
 );
 
 CREATE TABLE RRHH.ModuloRol (
 	nombreRol VARCHAR (20),
-	nombreModulo VARCHAR (20),
+	nombreModulo VARCHAR (60),
 
 	PRIMARY KEY (nombreRol, nombreModulo),
 
@@ -123,7 +123,7 @@ CREATE TABLE RRHH.Permisos (
 );
 
 CREATE TABLE RRHH.PermisoModulo (
-	nombreModulo VARCHAR (20),
+	nombreModulo VARCHAR (60),
 	tipoPermiso INT,
 
 	PRIMARY KEY (nombreModulo, tipoPermiso),
@@ -134,13 +134,14 @@ CREATE TABLE RRHH.PermisoModulo (
 
 CREATE TABLE RRHH.PermisoModuloRol(  -- Tabla intermedia entre tablas intermedias para personalizar los permisos por rol de mejor manera
     nombreRol VARCHAR(20),
-    nombreModulo VARCHAR(20),
+    nombreModulo VARCHAR (60),
     tipoPermiso INT,
     PRIMARY KEY (nombreRol, nombreModulo, tipoPermiso),
     FOREIGN KEY (nombreRol) REFERENCES RRHH.Rol(nombreRol),
     FOREIGN KEY (nombreModulo) REFERENCES RRHH.Modulo(nombreModulo),
     FOREIGN KEY (tipoPermiso) REFERENCES RRHH.Permisos(ID)
 );
+
 
 CREATE TABLE RRHH.Usuario (
 	cedula VARCHAR (20) PRIMARY KEY NOT NULL,
@@ -158,14 +159,12 @@ CREATE TABLE RRHH.Usuario (
 	fechaRegistro DATE NOT NULL,
 	fechaNacimiento DATE NOT NULL, 
 	salarioActual FLOAT NOT NULL,
-	tipoCedula INT NOT NULL,
 	activo BIT,
-	FOREIGN KEY (tipoCedula) REFERENCES Ventas.TipoCedula(ID),
 	FOREIGN KEY (genero) REFERENCES Ventas.Genero(ID),
 
 	-- CREDENCIALES 
-	usuario VARCHAR (15) NOT NULL,
-	contrasenia VARCHAR (15) NOT NULL,
+	usuario VARCHAR (100) NOT NULL,
+	contrasenia VARCHAR (100) NOT NULL,
 	FOREIGN KEY (nombrePuesto_Puesto) REFERENCES RRHH.Puesto(nombre),
 	CONSTRAINT AK_Usuario UNIQUE(usuario),
 
@@ -231,24 +230,25 @@ CREATE TABLE RRHH.HistoricoSalario (
 /*
 Creacion de tablas del schema Ventas
 */
-
 CREATE TABLE Ventas.Cliente (
 	cedula VARCHAR (20) PRIMARY KEY NOT NULL,
 	tipoCedula INT NOT NULL,
 	fax VARCHAR (20) NOT NULL,
-	primerNombre VARCHAR (20) NOT NULL, --Si fuera una empresa aquí se guardaría el nombre completo
-	segundoNombre VARCHAR (20) NULL,
-	primerApellido VARCHAR (20) NULL,
-	segundoApellido VARCHAR (20) NULL,
-	genero INT NOT NULL,
+	primerNombre VARCHAR (30) NOT NULL, --Si fuera una empresa aquí se guardaría el nombre completo
+	segundoNombre VARCHAR (30) NULL,
+	primerApellido VARCHAR (30) NULL,
+	segundoApellido VARCHAR (30) NULL,
 	email VARCHAR (50) NOT NULL,
 	provincia VARCHAR (20) NOT NULL,
 	canton VARCHAR (20) NOT NULL,
 	distrito VARCHAR (20) NOT NULL,
 	seniaExacta VARCHAR (100) NOT NULL,
 	activo BIT,
+	zona INT NOT NULL,
+	sector INT NOT NULL,
 	FOREIGN KEY (tipoCedula) REFERENCES Ventas.TipoCedula(ID),
-	FOREIGN KEY (genero) REFERENCES Ventas.Genero(ID),
+	FOREIGN KEY (zona) REFERENCES Ventas.Zona(ID),
+	FOREIGN KEY (sector) REFERENCES Ventas.Sector(ID)
 );
 
 -- Tabla del multievaluado Telefonos

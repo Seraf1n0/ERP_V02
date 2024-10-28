@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <!-- Aquí puedes incluir estilos específicos para esta página si es necesario -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="~/css/estilo_LayoutVentas.css" asp-append-version="true" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css" />
+    
+    <!-- Bootstrap Datepicker CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    
+    <!--Para mensajes-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+
+</head>
+<body>
+    
+    <nav>
+        <div class="logo">
+            <i class='bx bx-menu menu-icon'></i>
+            <span class=" "logo-name">Rercursos Humanos</span>
+        </div>
+
+        
+        <div class="sidebar">
+            
+            <div class="logo">
+                <i class='bx bx-menu menu-icon'></i>
+                <span class=" " logo-name">Rercursos Humanos</span>
+            </div>
+
+            <div class="sidebar-content">
+                <ul class="lists">
+
+                    <li class="list">
+                        <a href="\RRHH/Empleados" class="nav-link">
+                            <i class='bx bx-face icon'></i>   
+                            <span class="link">Empleados</span>
+
+                        </a>
+                    </li>
+
+                    <li class="list">
+                        <a href="\RRHH/Planilla" class="nav-link">
+                            <i class='bx bx-money-withdraw icon'></i> 
+                            <span class="link">Planilla</span>
+
+                        </a>
+                    </li>
+
+                    <li class="list">
+                        <a href="\RRHH/Clientes" class="nav-link">
+                            <i class='bx bx-male-female icon'></i>
+                            <span class="link">Clientes</span>
+
+                        </a>
+                    </li>
+
+                  
+
+                    <li class="list">
+                        <a href="\RRHH/HistoricoDePuestos" class="nav-link">
+                            <i class='bx bx-archive icon'></i>  
+                            <span class="link">Histórico De Puestos</span>
+
+                        </a>
+                    </li>
+
+                    <li class="list">
+                        <a href="\RRHH/HistoricoDeSalarios" class="nav-link">
+                            <i class='bx bx-box icon'></i>
+                            <span class="link">Histórico De Salarios</span>
+
+                        </a>
+                    </li>
+
+                    <li class="list">
+                        <a href="\Ventas/InventarioVentas" class="nav-link">
+                            <i class='bx bx-archive icon'></i>
+                            <span class="link">Inventario</span>
+
+                        </a>
+                    </li>
+                    
+                   
+                    
+                        <li class="list">
+                            <a href="\Ventas/CrearCotizacion" class="nav-link">
+                                <i class='bx bx-spreadsheet icon'></i>
+                                <span class="link">Crear Cotización</span>
+                            </a>
+                        </li>
+                
+                    
+                </ul>
+                <div class="bottom-content">
+
+                    <li class="list">
+                        <a href="#" class="nav-link">
+                            <i class='bx bxs-id-card icon'></i>
+                            <span class="link">Perfil</span>
+
+                        </a>
+                    </li>
+
+                    <li class="list">
+                        <a href="\Index" class="nav-link">
+                            <i class='bx bx-log-out icon'></i>
+                            <span class="link">Cerrar Sesión</span>
+
+                        </a>
+                    </li>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="overlay">
+
+    <script>
+        const navBar = document.querySelector("nav"),
+            menuBtns = document.querySelectorAll(".menu-icon"),
+            overlay = document.querySelector(".overlay");
+        menuBtns.forEach(menuBtn => { 
+            menuBtn.addEventListener("click", () => {
+                navBar.classList.toggle("open")
+            })
+        })
+
+        overlay.addEventListener("click", () => {
+            navBar.classList.remove("open")
+        })
+
+            
+
+    </script>
+        <!-- Bootstrap -->
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <!--Para el combobox que filtra-->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+        <!-- Bootstrap Datepicker JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    </section>
+
+    
+    @RenderBody()
+    @await RenderSectionAsync("Scripts", required: false)
+    
+</body>
+</html>

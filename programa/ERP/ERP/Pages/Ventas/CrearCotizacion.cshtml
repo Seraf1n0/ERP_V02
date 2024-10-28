@@ -1,0 +1,440 @@
+﻿@page
+@model ERP.Pages.Ventas.CrearCotizacionModel
+@{
+    Layout = "_LayoutRRHH";
+    var fechaHoyH = Model.fechaHoy.ToString("yyyy-MM");
+    ViewData["IsAdmin"] = "true";
+    ViewData["Title"] = "Principal";
+}
+    
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin-top: 80px;
+    }
+
+    .contenedorPrincipal {
+        background: rgba(19, 35, 47,.9);
+        padding: 40px;
+        border-radius: 4px;
+        margin: 40px auto;
+        box-shadow: 0 4px 10px 4px rgba(19, 35, 47,.3);
+        max-width: 1400px;
+        width: 90%;
+    }
+
+    h1 {
+        color: #ffffff;
+        text-align: left;
+        margin: 20px;
+    }
+
+    .linea {
+        height: 1px; /* Grosor de la línea */
+        background-color: white; /* Color de la línea */
+        position: relative; /* Aseguramos que la línea esté posicionada */
+        left: 50%; /* Mover al centro */
+        transform: translateX(-50%); /* Alinear al centro */
+    }
+
+    
+
+    label {
+        color: #ffffff;
+        margin: 20px;
+        font-size: 20px;
+    }
+
+    /*Para el modal que se abre al presionar el botón Agregar Producto*/
+    .modal {
+        display: none; 
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        max-width: 900px; 
+        max-height: 700px; 
+        overflow-y: auto; 
+    }
+
+    .over {
+        display: none; 
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+
+    .close-button {
+        padding: 10px;
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .close-button:hover {
+            background-color: #c82333;
+        }
+
+    input {
+        color: #ffffff;
+        /*font-size: 18px;*/
+        padding: 5px 10px;
+        margin-right: 15px;
+        /*margin-left: 15px;*/
+        margin-bottom: 10px;
+        background: none;
+        background-image: none;
+        border: 1px solid #a0b3b0;
+        border-radius: 0;
+        transition: border-color .25s ease, box-shadow .25s;
+    }
+
+    .inputTabla{
+        color: black;
+
+    }
+
+    select {
+        color: #ffffff; /* Texto en blanco para combinar */
+        padding: 5px 10px; /* Igual que el input */
+        margin-right: 15px;
+        margin-left: 15px;
+        margin-bottom: 10px;
+        background: none;
+        border: 1px solid #a0b3b0;
+        border-radius: 0;
+        transition: border-color .25s ease, box-shadow .25s;
+        appearance: none; /* Elimina el estilo predeterminado del navegador */
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-color: transparent;
+    }
+
+    option {
+        color: #000000; /* Texto negro dentro de las opciones desplegadas */
+        background-color: #ffffff; /* Fondo blanco para mejor contraste */
+    }
+
+     .selectpicker {
+        color: #ffffff; /* Texto en blanco para combinar */
+        padding: 5px 10px; /* Igual que el input */
+        margin-right: 15px;
+        margin-left: 15px;
+        margin-bottom: 10px;
+        background: none;
+        border: 1px solid #a0b3b0;
+        border-radius: 0;
+        transition: border-color .25s ease, box-shadow .25s;
+    }
+
+     .dropdown-menu .option {
+        color: #000000; /* Texto negro dentro de las opciones desplegadas */
+        background-color: #ffffff; /* Fondo blanco para mejor contraste */
+    }
+
+</style>
+
+<script>
+    //Intentando pasar la lista de productos al html para manejar lo de agregar en la vista
+    var articulosJ = []
+    @foreach(var articulo in Model.articulos)
+    {
+        <text>
+            articulosJ.push({
+                Codigo: @articulo.codigo.ToString(),
+                Nombre: "@articulo.nombre",
+                Marca: "@articulo.marca",
+                Precio: @articulo.precio.ToString()
+        });
+        </text>
+    }
+        console.log(articulosJ)
+    
+
+</script>
+
+<div class="contenedorPrincipal">
+    <h1>Crear Cotización</h1>
+    <div class="linea"></div>
+    <form method="POST" asp-page="CrearCotizacionModel">
+        <div class="seleccionCliente">
+            <!--Detalles de la cotización. Todo lo que vaya en una misma línea
+                va en un div por separado para que el estilo lo acomode
+            -->
+            <div>
+                <label>Cliente: </label>
+                <select class="clientSelected" id="clientSelected" data-live-search="true">
+                    @foreach (var cedula in Model.nombresCliente)
+                    {
+                        <option data-tokens=@cedula.Key>@cedula.Key</option>
+                    }
+                </select>
+                <label>Nombre: </label>
+                <input type="text" id="nombreCliente" asp-for="nombreCliente" value="@Model.nombreCliente" disabled />
+            </div>
+            <div>
+                <label>Zona: </label>
+                <input type="text" id="zonaCliente" asp-for="zonaCliente" value="@Model.zonaCliente" disabled/>
+                <label>Sector: </label>
+                <input type="text" id="sectorCliente" asp-for="sectorCliente" value="@Model.sectorCliente" disabled />
+            </div>
+            <div>
+                <label for="fecha">Mes proyectado de cierre: </label>
+                <input type="month" id="fecha" name="fecha" value="@fechaHoyH" max="@fechaHoyH" />
+                <label for="fecha">Probabilidad de cierre: </label>
+                <select id="opciones" name="probabilidadCierre">
+                    @foreach (var probabilidad in Model.probabilidades)
+                    {
+                        <option value="@probabilidad.Value">@probabilidad.Value</option>
+                    }
+                </select>
+            </div>
+            <div>
+                <label for="fecha">Descripción: </label>
+            </div>
+            <div>
+
+                <textarea id="descripcion" name="descripcion" asp-for="descripcion" rows="5" cols="50"></textarea>
+            </div>
+
+            <!--Parte de añadir productos y las líneas de la factura-->
+            <div>
+                <button type="button" class="botonAgregarProducto" id="botonAgregarProducto">Agregar Producto</button>
+            </div>
+
+            <!--Tabla-->
+            <div class="card">
+                <div class="card-body">
+                    <table id="tablaArticulosSeleccionados" class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Código</th>
+                                <th scope="col">Marca</th>
+                                <th scope="col" style="width: 40%;">Producto</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Precio Unitario</th>
+                                <th scope="col">Precio Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <input type="hidden" id="compras" name="compras" asp-for="textoInputOculto"/>
+
+        <button type="submit">Enviar Cotización</button>
+    </form>
+</div>
+
+
+<!-- Modal vacío -->
+<div class="over" id="over"></div>
+<div class="modal" id="modal">
+    <h2>Productos</h2>
+    <p>Seleccione el producto que desea agregar a la cotización</p>
+     <!--Tabla del modal-->
+    <div class="card">
+        <div class="card-body">
+            <table id="tablaTodosLosProductos" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Código</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col" style="width: 40%;">Producto</th>
+                        <th scope="col">Precio Unitario</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Las filas se agregarán aquí -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <button class="close-button" id="closeModal">Cerrar</button>
+</div>
+
+
+<script>
+ 
+    const botonAgregarProducto = document.getElementById('botonAgregarProducto');
+    const closeModalButton = document.getElementById('closeModal');
+    const modal = document.getElementById('modal');
+    const over = document.getElementById('over');
+
+    // Abre el recuadro blanco
+    botonAgregarProducto.addEventListener('click', () => {
+        modal.style.display = 'block';
+        over.style.display = 'block';
+    });
+
+    // Cierra el recuadro blanco
+    closeModalButton.addEventListener('click', () => {
+        modal.style.display = 'none';
+        over.style.display = 'none';
+    });
+
+    // Cierra el recuadro al hacer clic fuera de él
+    over.addEventListener('click', () => {
+        modal.style.display = 'none';
+        over.style.display = 'none';
+    });
+
+    
+</script>
+<script>
+    // Esperar a que el documento esté listo
+    document.addEventListener("DOMContentLoaded", function () {
+ 
+        var sectoresCliente = @Html.Raw(Json.Serialize(Model.sectoresCliente));
+        var zonasCliente = @Html.Raw(Json.Serialize(Model.zonasCliente));
+        var nombresCliente = @Html.Raw(Json.Serialize(Model.nombresCliente));
+
+
+        var selectElement = document.getElementById("clientSelected");
+
+
+        var inputElement = document.getElementById("sectorCliente");
+        var inputNombre = document.getElementById("nombreCliente");
+        var inputZona = document.getElementById("zonaCliente");
+
+        selectElement.addEventListener("change", function () {
+
+            var valorSeleccionado = this.value;
+            console.log("Se ha cambiado el dato a: " + valorSeleccionado);
+
+
+            if (sectoresCliente.hasOwnProperty(valorSeleccionado)) {
+
+                inputElement.value = sectoresCliente[valorSeleccionado];
+                inputZona.value = zonasCliente[valorSeleccionado];
+                inputNombre.value = nombresCliente[valorSeleccionado];
+                
+            } else {
+
+                inputElement.value = '';
+                inputZona.value = '';
+                inputNombre.value = '';
+            }
+        });
+    });
+
+    // Para llenar la tabla con todos los productos y manejar los borrados entre ambas
+    window.onload = function () {
+        llenarTablaTodosLosProductos(); // Llenar la tabla de todos los productos al cargar
+    };
+
+    // Función para llenar la tabla de todos los productos
+    function llenarTablaTodosLosProductos() {
+        var tableBody = document.querySelector('#tablaTodosLosProductos tbody'); // Selecciona el tbody de la tabla por ID
+        tableBody.innerHTML = ''; // Limpiar el tbody antes de llenarlo
+
+        articulosJ.forEach(function (articulo, index) { // Agregar index para eliminar el artículo
+            var row = document.createElement('tr'); // Crear una nueva fila
+            row.innerHTML = `
+                <td>${articulo.Codigo}</td>
+                <td>${articulo.Marca}</td>
+                <td>${articulo.Nombre}</td>
+                <td>${articulo.Precio}</td>
+            `;
+
+            // Agregar el evento de clic a la fila
+            row.addEventListener('click', function () {
+                // Agregar el artículo a la tabla de artículos seleccionados
+                agregarArticuloSeleccionado(articulo);
+                // Eliminar el artículo de la lista
+                articulosJ.splice(index, 1); // Elimina el artículo de la lista usando su índice
+                llenarTablaTodosLosProductos(); // Actualiza la tabla de todos los productos
+                const modal = document.getElementById('modal');
+                const over = document.getElementById('over');
+                modal.style.display = 'none';
+                over.style.display = 'none';
+                console.log(articulosJ); // Muestra la lista actualizada en la consola
+            });
+
+            tableBody.appendChild(row); // Agregar la fila al tbody
+        });
+    }
+
+    // Función para agregar un artículo a la tabla de artículos seleccionados
+    function agregarArticuloSeleccionado(articulo) {
+        var tableBodySeleccionados = document.querySelector('#tablaArticulosSeleccionados tbody'); // Selecciona el tbody de la tabla de artículos seleccionados
+        var row = document.createElement('tr'); // Crear una nueva fila
+        row.innerHTML = `
+            <td>${articulo.Codigo}</td>
+            <td>${articulo.Marca}</td>
+            <td>${articulo.Nombre}</td>
+            <td><input type="number" class="inputTabla" value="1" min="1" onkeydown="return false;" /></td> <!-- Cantidad -->
+            <td class="precio-unitario">${articulo.Precio.toFixed(2)}</td> <!-- Precio Unitario -->
+            <td class="precio-total">${articulo.Precio.toFixed(2)}</td> <!-- Precio Total inicial -->
+            <td><button class="btn-borrar">Borrar</button></td> <!-- Botón de Borrar -->
+        `;
+
+
+        var cantidadInput = row.querySelector('.inputTabla');
+        cantidadInput.addEventListener('input', function () {
+            // Obtener la cantidad y el precio unitario
+            var cantidad = parseFloat(cantidadInput.value);
+            var precioUnitario = parseFloat(row.querySelector('.precio-unitario').textContent);
+
+            // Calcular el precio total
+            var precioTotal = cantidad * precioUnitario;
+
+            // Actualizar el precio total en la tabla
+            row.querySelector('.precio-total').textContent = precioTotal.toFixed(2);
+        });
+
+
+        var borrarBoton = row.querySelector('.btn-borrar');
+        borrarBoton.addEventListener('click', function () {
+
+            articulosJ.push(articulo); 
+            llenarTablaTodosLosProductos(); 
+            tableBodySeleccionados.removeChild(row); 
+        });
+
+        tableBodySeleccionados.appendChild(row); 
+        actualizarArticulosSeleccionados();
+    }
+
+    function actualizarArticulosSeleccionados() {
+        const tbody = document.querySelector('#tablaArticulosSeleccionados tbody');
+        const articulosSeleccionados = {};
+        let stringArt = '';
+        tbody.querySelectorAll('tr').forEach(row => {
+            const codigo = row.children[0].innerText; 
+            const cantidad = row.children[3].querySelector('input').value; 
+            articulosSeleccionados[codigo] = cantidad; 
+            stringArt += `${codigo};${cantidad};`;
+        });
+
+ 
+        const comprasInput = document.getElementById('compras');
+        comprasInput.value = stringArt; 
+
+     
+        console.log("Valor asignado a compras:", comprasInput.value); 
+
+        
+        console.log("Valor actualizado de compras:", valorActualizado);
+    }
+</script>
+
+        
