@@ -3,44 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{14494D0A-1384-4EDB-B397-CCDCEB25C460}|ERP\\ERP.csproj|c:\\users\\dylan\\documents\\erp_v02\\programa\\erp\\erp\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14494D0A-1384-4EDB-B397-CCDCEB25C460}|ERP\\ERP.csproj|solutionrelative:erp\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14494D0A-1384-4EDB-B397-CCDCEB25C460}|ERP\\ERP.csproj|c:\\users\\dylan\\documents\\erp_v02\\programa\\erp\\erp\\pages\\administrador\\registrarempleado.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14494D0A-1384-4EDB-B397-CCDCEB25C460}|ERP\\ERP.csproj|solutionrelative:erp\\pages\\administrador\\registrarempleado.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14494D0A-1384-4EDB-B397-CCDCEB25C460}|ERP\\ERP.csproj|c:\\users\\dylan\\documents\\erp_v02\\programa\\erp\\erp\\pages\\shared\\_layoutadministrador.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{14494D0A-1384-4EDB-B397-CCDCEB25C460}|ERP\\ERP.csproj|solutionrelative:erp\\pages\\shared\\_layoutadministrador.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14494D0A-1384-4EDB-B397-CCDCEB25C460}|ERP\\ERP.csproj|c:\\users\\dylan\\documents\\erp_v02\\programa\\erp\\erp\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{14494D0A-1384-4EDB-B397-CCDCEB25C460}|ERP\\ERP.csproj|solutionrelative:erp\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14494D0A-1384-4EDB-B397-CCDCEB25C460}|ERP\\ERP.csproj|c:\\users\\dylan\\documents\\erp_v02\\programa\\erp\\erp\\pages\\shared\\_layoutsinestilo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{14494D0A-1384-4EDB-B397-CCDCEB25C460}|ERP\\ERP.csproj|solutionrelative:erp\\pages\\shared\\_layoutsinestilo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{14494D0A-1384-4EDB-B397-CCDCEB25C460}|ERP\\ERP.csproj|c:\\users\\dylan\\documents\\erp_v02\\programa\\erp\\erp\\pages\\administrador\\registrarempleado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{14494D0A-1384-4EDB-B397-CCDCEB25C460}|ERP\\ERP.csproj|solutionrelative:erp\\pages\\administrador\\registrarempleado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14494D0A-1384-4EDB-B397-CCDCEB25C460}|ERP\\ERP.csproj|c:\\users\\dylan\\documents\\erp_v02\\programa\\erp\\erp\\pages\\shared\\_layoutrrhh.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{14494D0A-1384-4EDB-B397-CCDCEB25C460}|ERP\\ERP.csproj|solutionrelative:erp\\pages\\shared\\_layoutrrhh.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14494D0A-1384-4EDB-B397-CCDCEB25C460}|ERP\\ERP.csproj|c:\\users\\dylan\\documents\\erp_v02\\programa\\erp\\erp\\pages\\ventas\\crearcotizacion.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14494D0A-1384-4EDB-B397-CCDCEB25C460}|ERP\\ERP.csproj|solutionrelative:erp\\pages\\ventas\\crearcotizacion.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14494D0A-1384-4EDB-B397-CCDCEB25C460}|ERP\\ERP.csproj|c:\\users\\dylan\\documents\\erp_v02\\programa\\erp\\erp\\pages\\ventas\\crearcotizacion.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{14494D0A-1384-4EDB-B397-CCDCEB25C460}|ERP\\ERP.csproj|solutionrelative:erp\\pages\\ventas\\crearcotizacion.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{14494D0A-1384-4EDB-B397-CCDCEB25C460}|ERP\\ERP.csproj|c:\\users\\dylan\\documents\\erp_v02\\programa\\erp\\erp\\pages\\rrhh\\empleados.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{14494D0A-1384-4EDB-B397-CCDCEB25C460}|ERP\\ERP.csproj|solutionrelative:erp\\pages\\rrhh\\empleados.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -59,130 +23,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Index.cshtml.cs",
-              "DocumentMoniker": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\Pages\\Index.cshtml.cs",
-              "RelativeDocumentMoniker": "ERP\\Pages\\Index.cshtml.cs",
-              "ToolTip": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\Pages\\Index.cshtml.cs",
-              "RelativeToolTip": "ERP\\Pages\\Index.cshtml.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAkwBYAAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-27T17:09:19.499Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "_LayoutSinEstilo.cshtml",
-              "DocumentMoniker": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\Pages\\Shared\\_LayoutSinEstilo.cshtml",
-              "RelativeDocumentMoniker": "ERP\\Pages\\Shared\\_LayoutSinEstilo.cshtml",
-              "ToolTip": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\Pages\\Shared\\_LayoutSinEstilo.cshtml",
-              "RelativeToolTip": "ERP\\Pages\\Shared\\_LayoutSinEstilo.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAcAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-27T17:06:17.799Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\Pages\\Index.cshtml",
-              "RelativeDocumentMoniker": "ERP\\Pages\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\Pages\\Index.cshtml",
-              "RelativeToolTip": "ERP\\Pages\\Index.cshtml",
-              "ViewState": "AQIAAE4AAAAAAAAAAAAAAFgAAABhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-27T17:04:49.834Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "_LayoutAdministrador.cshtml",
-              "DocumentMoniker": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\Pages\\Shared\\_LayoutAdministrador.cshtml",
-              "RelativeDocumentMoniker": "ERP\\Pages\\Shared\\_LayoutAdministrador.cshtml",
-              "ToolTip": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\Pages\\Shared\\_LayoutAdministrador.cshtml",
-              "RelativeToolTip": "ERP\\Pages\\Shared\\_LayoutAdministrador.cshtml",
-              "ViewState": "AQIAABsAAAAAAAAAAAAAAA8AAAAHAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-27T02:25:54.896Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "RegistrarEmpleado.cshtml.cs",
-              "DocumentMoniker": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\Pages\\Administrador\\RegistrarEmpleado.cshtml.cs",
-              "RelativeDocumentMoniker": "ERP\\Pages\\Administrador\\RegistrarEmpleado.cshtml.cs",
-              "ToolTip": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\Pages\\Administrador\\RegistrarEmpleado.cshtml.cs",
-              "RelativeToolTip": "ERP\\Pages\\Administrador\\RegistrarEmpleado.cshtml.cs",
-              "ViewState": "AQIAAMcAAAAAAAAAAAAgwBQAAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-27T00:28:24.582Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
               "Title": "RegistrarEmpleado.cshtml",
               "DocumentMoniker": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\Pages\\Administrador\\RegistrarEmpleado.cshtml",
               "RelativeDocumentMoniker": "ERP\\Pages\\Administrador\\RegistrarEmpleado.cshtml",
               "ToolTip": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\Pages\\Administrador\\RegistrarEmpleado.cshtml",
               "RelativeToolTip": "ERP\\Pages\\Administrador\\RegistrarEmpleado.cshtml",
-              "ViewState": "AQIAAJQBAAAAAAAAAAAwwMEBAAAiAAAA",
+              "ViewState": "AQIAALYBAAAAAAAAAAAAAJoBAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-26T23:51:54.528Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Empleados.cshtml",
-              "DocumentMoniker": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\Pages\\RRHH\\Empleados.cshtml",
-              "RelativeDocumentMoniker": "ERP\\Pages\\RRHH\\Empleados.cshtml",
-              "ToolTip": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\Pages\\RRHH\\Empleados.cshtml",
-              "RelativeToolTip": "ERP\\Pages\\RRHH\\Empleados.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAeAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-24T04:20:52.302Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CrearCotizacion.cshtml.cs",
-              "DocumentMoniker": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\Pages\\Ventas\\CrearCotizacion.cshtml.cs",
-              "RelativeDocumentMoniker": "ERP\\Pages\\Ventas\\CrearCotizacion.cshtml.cs",
-              "ToolTip": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\Pages\\Ventas\\CrearCotizacion.cshtml.cs",
-              "RelativeToolTip": "ERP\\Pages\\Ventas\\CrearCotizacion.cshtml.cs",
-              "ViewState": "AQIAAD8AAAAAAAAAAAAAAEYAAAApAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-21T21:55:02.098Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "CrearCotizacion.cshtml",
-              "DocumentMoniker": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\Pages\\Ventas\\CrearCotizacion.cshtml",
-              "RelativeDocumentMoniker": "ERP\\Pages\\Ventas\\CrearCotizacion.cshtml",
-              "ToolTip": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\Pages\\Ventas\\CrearCotizacion.cshtml",
-              "RelativeToolTip": "ERP\\Pages\\Ventas\\CrearCotizacion.cshtml",
-              "ViewState": "AQIAAJYAAAAAAAAAAAAAALQAAABBAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-21T16:03:24.883Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "_LayoutRRHH.cshtml",
-              "DocumentMoniker": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\Pages\\Shared\\_LayoutRRHH.cshtml",
-              "RelativeDocumentMoniker": "ERP\\Pages\\Shared\\_LayoutRRHH.cshtml",
-              "ToolTip": "C:\\Users\\Dylan\\Documents\\ERP_V02\\programa\\ERP\\ERP\\Pages\\Shared\\_LayoutRRHH.cshtml",
-              "RelativeToolTip": "ERP\\Pages\\Shared\\_LayoutRRHH.cshtml",
-              "ViewState": "AQIAAIoAAAAAAAAAAAAAAJwAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-21T15:23:46.241Z",
+              "WhenOpened": "2024-10-28T02:32:16.046Z",
               "EditorCaption": ""
             }
           ]

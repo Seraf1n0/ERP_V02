@@ -2,7 +2,6 @@
 use ERP
 go
 
-
 create procedure InsertarUsuario
 	@cedula varchar(20),
 	@nombrePuesto varchar(150),
@@ -18,8 +17,8 @@ create procedure InsertarUsuario
 	@seniaExacta varchar(100),
 	@fechaNacimiento date,
 	@salario float,
-	@usuario varchar(15),
-	@contrasenia varchar(15),
+	@usuario varchar(100),
+	@contrasenia varchar(100),
 	@error varchar(50) output
 as
 begin try

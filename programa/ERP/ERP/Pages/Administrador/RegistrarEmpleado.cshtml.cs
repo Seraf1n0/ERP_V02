@@ -10,6 +10,7 @@ using System;
 using System.Reflection.PortableExecutable;
 using System.Security.Cryptography;
 using System.Text;
+using Microsoft.AspNetCore.DataProtection.KeyManagement;
 namespace ERP.Pages.Administrador
 {
     public class RegistrarEmpleadoModel : PageModel
@@ -306,39 +307,26 @@ namespace ERP.Pages.Administrador
             catch (Exception ex) { return ""; }
 
 
+  
             //Ahora tendrìa que cifrar el texto
             byte[] iv;
             byte[] encrypted;
 
             // Generar un nuevo vector de inicialización
-            using (Aes aesAlg = Aes.Create())
+            using (Aes aes = Aes.Create())
             {
-                aesAlg.Key = Encoding.UTF8.GetBytes(clave); // Convertir la clave a bytes
-                aesAlg.GenerateIV(); // Generar IV
+                aes.Key = Encoding.UTF8.GetBytes(clave); // Convertir la clave a bytes
+                aes.Mode = CipherMode.ECB; // Modo sin IV
+                aes.Padding = PaddingMode.PKCS7;
 
-                iv = aesAlg.IV;
+                ICryptoTransform encryptor = aes.CreateEncryptor(aes.Key, null); // Sin IV
+                byte[] plainBytes = Encoding.UTF8.GetBytes(texto);
+                byte[] encryptedBytes = encryptor.TransformFinalBlock(plainBytes, 0, plainBytes.Length);
 
-                // Crear un cifrador
-                ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
-
-                using (MemoryStream msEncrypt = new MemoryStream())
-                {
-                    // Escribir el IV al inicio del flujo
-                    msEncrypt.Write(iv, 0, iv.Length);
-
-                    using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
-                    {
-                        using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
-                        {
-                            swEncrypt.Write(texto);
-                        }
-                        encrypted = msEncrypt.ToArray();
-                    }
-                }
+                return Convert.ToBase64String(encryptedBytes);
             }
 
-            // Devolver el texto cifrado como cadena Base64
-            return Convert.ToBase64String(encrypted);
+
         }
     }
 }
