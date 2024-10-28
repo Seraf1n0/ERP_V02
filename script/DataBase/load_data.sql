@@ -24,7 +24,7 @@ INSERT INTO RRHH.Modulo (nombreModulo, activo) VALUES
 ('Planilla', 1),
 ('Clientes', 1),
 ('Histórico de Puestos', 1),
-('Historico de Salarios', 1),
+('Histórico de Salarios', 1),
 ('Facturación', 1),
 ('Inventario', 1),
 ('Cotizaciones',1),
