@@ -409,36 +409,29 @@
         <input type="hidden" id="permisosVisualizacion" name="permisosVisualizacion" />
         <input type="hidden" id="permisosReportes" name="permisosReportes"/>
 
-        <button onclick="verificarVisualizar()">Verificar Checkboxes de Visualizar</button>
     </form>
-    @if (Model.errorCedula)
-    {
-        <div class="error-message">
-            Por favor, ingresa un nombre.
-        </div>
-    }
+
     
 </div>
 
 <script>
     document.getElementById('registroUsuario').addEventListener('submit', function (event) {
-        // Prevenir el envío del formulario inicialmente
+       
         event.preventDefault();
 
-        // Obtener todos los checkboxes de la tabla
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
         let checked = false;
 
-        // Iterar sobre los checkboxes para ver si al menos uno está seleccionado
+
         checkboxes.forEach((checkbox) => {
             if (checkbox.checked) {
                 checked = true;
             }
         });
 
-        // Verificar si al menos un checkbox está seleccionado
+
         if (!checked) {
-            // Usar SweetAlert para mostrar una alerta estilizada
+
             swal({
                 title: "¡Atención!",
                 text: "Por favor, seleccione al menos un permiso.",
@@ -446,7 +439,7 @@
                 button: "Aceptar",
             });
         } else {
-            // Aquí puedes proceder a enviar el formulario si hay al menos un checkbox seleccionado
+
             verificarVisualizar();
             this.submit(); // Esta línea envía el formulario
         }
@@ -879,9 +872,3 @@
         
     }
 </script>
-
-
-@if (Model.ErrorMensaje != null)
-{
-    <p style="color: red;">Error: @Model.ErrorMensaje</p>
-}

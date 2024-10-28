@@ -273,7 +273,7 @@
 
 
 <script>
-    // Obtiene los elementos del DOM
+ 
     const botonAgregarProducto = document.getElementById('botonAgregarProducto');
     const closeModalButton = document.getElementById('closeModal');
     const modal = document.getElementById('modal');
@@ -302,33 +302,33 @@
 <script>
     // Esperar a que el documento esté listo
     document.addEventListener("DOMContentLoaded", function () {
-        // Obtener el diccionario desde el modelo y convertirlo a un objeto JavaScript
+ 
         var sectoresCliente = @Html.Raw(Json.Serialize(Model.sectoresCliente));
         var zonasCliente = @Html.Raw(Json.Serialize(Model.zonasCliente));
         var nombresCliente = @Html.Raw(Json.Serialize(Model.nombresCliente));
 
-        // Obtener el elemento select
+
         var selectElement = document.getElementById("clientSelected");
 
-        // Obtener el input cuyo valor cambiará
+
         var inputElement = document.getElementById("sectorCliente");
         var inputNombre = document.getElementById("nombreCliente");
         var inputZona = document.getElementById("zonaCliente");
-        // Agregar un evento change al select
+
         selectElement.addEventListener("change", function () {
-            // Obtener el valor seleccionado
+
             var valorSeleccionado = this.value;
             console.log("Se ha cambiado el dato a: " + valorSeleccionado);
 
-            // Buscar en el diccionario el valor correspondiente
+
             if (sectoresCliente.hasOwnProperty(valorSeleccionado)) {
-                // Actualizar el valor del input
+
                 inputElement.value = sectoresCliente[valorSeleccionado];
                 inputZona.value = zonasCliente[valorSeleccionado];
                 inputNombre.value = nombresCliente[valorSeleccionado];
                 
             } else {
-                // Limpiar el campo si no hay coincidencia
+
                 inputElement.value = '';
                 inputZona.value = '';
                 inputNombre.value = '';
@@ -346,7 +346,7 @@
         var tableBody = document.querySelector('#tablaTodosLosProductos tbody'); // Selecciona el tbody de la tabla por ID
         tableBody.innerHTML = ''; // Limpiar el tbody antes de llenarlo
 
-        articulosJ.forEach(function (articulo, index) { // Agregamos index para eliminar el artículo
+        articulosJ.forEach(function (articulo, index) { // Agregar index para eliminar el artículo
             var row = document.createElement('tr'); // Crear una nueva fila
             row.innerHTML = `
                 <td>${articulo.Codigo}</td>
@@ -387,7 +387,7 @@
             <td><button class="btn-borrar">Borrar</button></td> <!-- Botón de Borrar -->
         `;
 
-        // Añadir el evento 'input' al input de cantidad para actualizar el precio total
+
         var cantidadInput = row.querySelector('.inputTabla');
         cantidadInput.addEventListener('input', function () {
             // Obtener la cantidad y el precio unitario
@@ -401,16 +401,16 @@
             row.querySelector('.precio-total').textContent = precioTotal.toFixed(2);
         });
 
-        // Añadir el evento 'click' al botón de borrar
+
         var borrarBoton = row.querySelector('.btn-borrar');
         borrarBoton.addEventListener('click', function () {
-            // Reintegrar el artículo a la lista de productos
-            articulosJ.push(articulo); // Agregar el artículo de nuevo a la lista de productos
-            llenarTablaTodosLosProductos(); // Actualiza la tabla de todos los productos
-            tableBodySeleccionados.removeChild(row); // Eliminar la fila de la tabla de artículos seleccionados
+
+            articulosJ.push(articulo); 
+            llenarTablaTodosLosProductos(); 
+            tableBodySeleccionados.removeChild(row); 
         });
 
-        tableBodySeleccionados.appendChild(row); // Agregar la fila a la tabla de artículos seleccionados
+        tableBodySeleccionados.appendChild(row); 
         actualizarArticulosSeleccionados();
     }
 
@@ -419,21 +419,20 @@
         const articulosSeleccionados = {};
         let stringArt = '';
         tbody.querySelectorAll('tr').forEach(row => {
-            const codigo = row.children[0].innerText; // Obtener el código del producto
-            const cantidad = row.children[3].querySelector('input').value; // Obtener la cantidad
-            articulosSeleccionados[codigo] = cantidad; // Almacenar en el objeto
+            const codigo = row.children[0].innerText; 
+            const cantidad = row.children[3].querySelector('input').value; 
+            articulosSeleccionados[codigo] = cantidad; 
             stringArt += `${codigo};${cantidad};`;
         });
 
-        // Asignar el valor JSON al input oculto
+ 
         const comprasInput = document.getElementById('compras');
-        comprasInput.value = stringArt; // Actualiza el campo oculto
+        comprasInput.value = stringArt; 
 
-        // Imprimir el valor del input 'compras' en la consola antes de y después de la asignación
-        console.log("Valor asignado a compras:", comprasInput.value); // Imprime el valor asignado
+     
+        console.log("Valor asignado a compras:", comprasInput.value); 
 
-        // Obtener nuevamente el valor del input para verificar que se actualizó
-        const valorActualizado = comprasInput.value;
+        
         console.log("Valor actualizado de compras:", valorActualizado);
     }
 </script>

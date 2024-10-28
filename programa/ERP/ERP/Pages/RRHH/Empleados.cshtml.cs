@@ -13,6 +13,8 @@ namespace ERP.Pages.RRHH
         public void OnGet()
         {
             empleadosRegistrados();
+            string usuario = HttpContext.Session.GetString("Usuario");
+            Console.WriteLine(usuario);
         }
 
         //Hago la consulta para ver todos los empleados registrados

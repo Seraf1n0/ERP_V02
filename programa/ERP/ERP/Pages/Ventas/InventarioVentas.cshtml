@@ -114,15 +114,9 @@
         <h2>Inventario</h2>
         <select name="" id="bodega">
             <option value="" selected>Todas las bodegas</option>
-            <option value="">Limón</option>
-            <option value="">Siquirres</option>
-            <option value="">Talamanca</option>
         </select>
         <select name="" id="Familia">
             <option value="" selected>Todas las familias</option>
-            <option value="" >Perecederos</option>
-            <option value="">Congelados</option>
-            <option value="">Frescos que shiiiiiiiiiiiico</option>
         </select>
         <div class="input_search">
             <input type="search" placeholder="Buscar" />
@@ -138,10 +132,21 @@
                 <th>Stock</th>
             </tr>
         </thead>
+        <tbody>
+            @for(int i = 0; i < Model.nombre.Count; i++)
+            {
+                <tr>
+                    <td>@Model.nombre[i]</td>
+                    <td>@Model.bodega[i]</td>
+                    <td>@Model.familia[i]</td>
+                    <td>@Model.stock[i]</td>
+                </tr>
+            }
+        </tbody>
        
     </table>
     <div class="table_fotter">
-        <p>Total de empleados :</p>
+        <p>Todos los productos</p>
     </div>
 </div>
 
