@@ -1,4 +1,6 @@
 -- Funciones necesarias para producción
+Use ERP
+GO
 
 CREATE FUNCTION Produccion.ArticulosDisponiblesEnBodegas (@codigoBodegaOrigen VARCHAR(10), @codigoBodegaDestino VARCHAR(10)) RETURNS TABLE
 AS
