@@ -94,16 +94,22 @@
         <label for="responsable">Responsable:</label>
         <select id="responsable" class="form-control">
             <option value="">Seleccione un responsable</option>
-            <!-- Opciones vacías por ahora -->
+            @foreach (var empleado in Model.empleadosDosponibles)
+            {
+                <option value="@empleado.Cedula">@empleado.NombreCompleto</option>
+            }
         </select>
     </div>
 
     <!-- Selección de la bodega destino -->
     <div class="form_group">
         <label for="bodega">Bodega destino:</label>
-        <select id="bodega" class="form-control">
+        <select id="bodega" asp-for="BodegaDestinoSeleccionada" class="form-control">
             <option value="">Seleccione una bodega</option>
-            <!-- Opciones vacías por ahora -->
+            @foreach (var bodega in Model.bodegasDisponibles)
+            {
+                <option value="@bodega.Codigo">@bodega.Nombre</option>
+            }
         </select>
     </div>
 
